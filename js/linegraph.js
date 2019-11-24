@@ -30,26 +30,25 @@ var y = d3.scaleLinear()
 
 
 queue()
-  .defer(d3.json, "data/africa.topo.json")
-  .defer(d3.csv, "data/global-funding.csv")
+  .defer(d3.csv, "data/data2.csv")
+  .defer(d3.csv, "data/degree-data.csv")
   .await(dataHandler);
 
 //initialize
 
-function dataHandler(error, africaMapJson, fundingCsv) {
+function dataHandler(error, data1, dataCsv) {
   //nest data by year - used hw 6 and some stack overflow for help
   // console.log(fundingCsv);
   var dataNest = d3.nest()
     .key(function(d) {
-      return d.Source;
+      return d.FieldOfStudy;
     })
-    .entries(fundingCsv);
+    .entries(dataCsv);
   dataNest.forEach(function(d) {
     d.values.forEach(function(e) {
       var storage = [];
       for (var key in e) {
         if (e[key] !== d.key) {
-          // key = parseDate(key); e[key] = parseFloat(e[key]); this broke because converted before pushing
           storage.push({
             "year": parseDate(key),
             "value": parseFloat(e[key])
@@ -157,6 +156,6 @@ function dataHandler(error, africaMapJson, fundingCsv) {
     .attr("dy", ".1em")
     .attr("transform", "rotate(-90)")
     .style("text-anchor", "end")
-    .text("Funding in millions USD");
+   // .text("Funding in millions USD");
 
 }
