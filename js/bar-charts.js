@@ -1,10 +1,10 @@
 console.log("main2js")
 // SVG drawing area
 
-var margin = {top: 40, right: 10, bottom: 60, left: 100};
+var margin = {top: 40, right: 10, bottom: 60, left: 50};
 
-var width = 2000 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var width = 1500 - margin.left - margin.right,
+    height = 375 - margin.top - margin.bottom;
 
 
 var svg = d3.select("#chart-area").append("svg")
