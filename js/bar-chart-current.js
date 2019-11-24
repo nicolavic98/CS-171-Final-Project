@@ -1,17 +1,17 @@
 console.log("main2js")
 // SVG drawing area
 
-var margin = {top: 40, right: 10, bottom: 60, left: 50};
+var margin_2 = {top: 40, right: 10, bottom: 60, left: 50};
 
-var width = 1000 - margin.left - margin.right,
-    height = 375 - margin.top - margin.bottom;
+var width_2 = 1000 - margin_2.left - margin_2.right,
+    height_2 = 375 - margin_2.top - margin_2.bottom;
 
 
-var svg = d3.select("#chart-area").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+var svg_2 = d3.select("#chart-area-2").append("svg")
+    .attr("width", width_2 + margin_2.left + margin_2.right)
+    .attr("height", height_2 + margin_2.top + margin_2.bottom)
     .append("g")
-    .attr("transform", "translate(" + (margin.left) + "," + margin.top + ")");
+    .attr("transform", "translate(" + (margin_2.left) + "," + margin_2.top + ")");
 
 // Initialize data
 
@@ -59,10 +59,10 @@ d3.csv("data/data2.csv", function(error, csv) {
 // console.log(maxCol);
 
     var x = d3.scaleBand()
-        .range([0, width/3])
+        .range([0, width_2/3])
         .padding(0.01);
     var y = d3.scaleLinear()
-        .range([height, 0]);
+        .range([height_2, 0]);
 
     x.domain(data.map(function (d) {
         return d.Race;
@@ -72,17 +72,7 @@ d3.csv("data/data2.csv", function(error, csv) {
     })]);
 
 
-    // var newdata = data[data.length-1];
-    // newdata.forEach(function(d){
-    //     console.log(d);
-    // });
-
-// console.log(csv[2].Malaria_cases);
-
-    // var myData = data[data.length-1];
-    console.log(data);
-
-    svg.selectAll(".bar")
+    svg_2.selectAll(".bar")
         .data(data)
         .enter().append("rect")
         .attr("class", "bar")
@@ -94,12 +84,12 @@ d3.csv("data/data2.csv", function(error, csv) {
             return y(d.y2017);
         })
         .attr("height", function (d) {
-            return height - y(d.y2017);
+            return height_2 - y(d.y2017);
         });
     // .attr("transform", "translate(" + (30) + "," + (-30) + ")");
 
-    svg.append("g")
-        .attr("transform", "translate(0," + height + ")")
+    svg_2.append("g")
+        .attr("transform", "translate(0," + height_2 + ")")
         .call(d3.axisBottom(x))
         .selectAll("text")
         .style("text-anchor", "end")
@@ -108,43 +98,8 @@ d3.csv("data/data2.csv", function(error, csv) {
         .attr("transform", "rotate(-30)");
 
     // add the y Axis
-    svg.append("g")
+    svg_2.append("g")
         .attr("class", "y-axis")
         .call(d3.axisLeft(y));
-
-    d3.select('#select-key').on('change', function(a) {
-        var newkey = d3.select(this).property('value');
-        console.log(newkey);
-        updateVis(newkey);
-    });
-
-function updateVis(myKey){
-    console.log(data[myKey]);
-    console.log("changling");
-    // svg.selectAll(".bar").remove();
-    y.domain([0, d3.max(data, function (d) {
-        console.log(d[myKey]);
-        return d[myKey];
-    })]);
-    console.log(d3.max(data, function (d) {
-        return d[myKey];
-    }));
-
-    svg.selectAll(".bar")
-        .data(data)
-        .transition()
-        .duration(800)
-        .attr("y", function (d) {
-            return y(d[myKey]);
-        })
-        .attr("height", function (d) {
-            return height - y(d[myKey]);
-        });
-
-    svg.selectAll(".y-axis")
-        .transition()
-        .duration(800)
-        .call(d3.axisLeft(y));
-}
 
 });

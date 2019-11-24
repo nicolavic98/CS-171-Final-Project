@@ -87,12 +87,8 @@
     <!-- causes_area_start -->
     <div class="causes_area">
         <div class="container-barchart">
-                <div class="col-xl-6 col-md-6">
-                    <div class="causes_info">
-                        <div class="section_title"></div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-md-6">
+            <div class="row">
+                <div class="col">
                     <select id="select-key" id="selected">
                         <option value="y2017">2017</option>
                         <option value="y2016">2016</option>
@@ -108,6 +104,10 @@
                     </select>
                     <div id ="chart-area"></div>
                 </div>
+                <div class="col">
+                    <div id ="chart-area-2"></div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- causes_area_end -->
@@ -353,6 +353,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     <script src="js/main.js"></script>
     <script src="js/bar-charts.js"></script>
+    <script src="js/bar-chart-current.js"></script>
     <script src="js/linegraph.js"></script>
 
 </body>
