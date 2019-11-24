@@ -19,8 +19,7 @@ var formatDate = d3.timeFormat("%Y");
 var parseDate = d3.timeParse("%Y");
 
 // scales
-var color = d3.scaleOrdinal(d3.schemeCategory10);
-var x = d3.scaleTime()
+var x = d3.scaleLinear()
   .range([0, width_line]);
 var y = d3.scaleLinear()
   .range([height_line, 0]);
@@ -67,11 +66,8 @@ console.log(dataNest);
 
   // data processing help came from this website god bless https://bl.ocks.org/jqadrad/a58719d82741b1642a2061c071ae2375
 
-  //var x = d3.scale.ordinal()
-    //    .domain(["1970-71","1975-76","1980-81","1985-86","1990-91","1995-96","2000-01","2005-06","2006-07","2008-09","2009-10","2010-11","2011-12","2012-13","2013-14","2014-15","2015-16","2016-17"]);
 
-
-
+  x.domain(["1","1","3"])
   y.domain([
     0,
     d3.max(dataNest, function(d) {
