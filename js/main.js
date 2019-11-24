@@ -15,19 +15,6 @@ $(window).on('scroll', function () {
 
 $(document).ready(function(){
 
-// mobile_menu
-var menu = $('ul#navigation');
-if(menu.length){
-	menu.slicknav({
-		prependTo: ".mobile_menu",
-		closedSymbol: '+',
-		openedSymbol:'-'
-	});
-};
-// blog-menu
-  // $('ul#blog-menu').slicknav({
-  //   prependTo: ".blog_menu"
-  // });
 
 // review-active
 $('.slider_active').owlCarousel({
@@ -263,11 +250,6 @@ dots:false,
 
 });
 //------- Mailchimp js --------//  
-function mailChimp() {
-  $('#mc_embed_signup').find('form').ajaxChimp();
-}
-mailChimp();
-
 
 
         // Search Toggle
