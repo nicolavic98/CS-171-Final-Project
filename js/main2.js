@@ -54,7 +54,7 @@ d3.csv("data/data2.csv", function(error, csv) {
         return d.y2017;
     });
 
-    console.log(maxCol);
+    // console.log(maxCol);
 
 // console.log(maxCol);
 
