@@ -23,3 +23,11 @@
     text-decoration: none;
     color: #555;
 }
+
+.row {
+    width: 50%;
+}
+
+.col {
+    width: 50%;
+}
