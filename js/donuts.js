@@ -81,7 +81,7 @@ function createVisualization(error, data1, data2) {
     dataset.finaid.push((data2[6].AnyAllTotal) / (data1[50].TFRBAll));
     dataset.finaid.push(1 - (data2[6].AnyAllTotal) / (data1[50].TFRBAll));
 
-    console.log(dataset)
+    console.log(dataset);
 
     function tweenPie(finish, k) {
         var j = parseInt(d3.select(this).attr("note"));
@@ -109,10 +109,10 @@ function createVisualization(error, data1, data2) {
 
     var arr1 = ["lightblue", "lightgreen", "pink", "white"]
 
-    var pie = d3h1.pie()
+    var pie = d3.pie()
         .sort(null);
 
-    var arc = d3h1.arc();
+    var arc = d3.arc();
 
     var svg = d3.select("#volunteers_area").append("svg")
         .attr("width", width_fin)
@@ -259,7 +259,7 @@ function createVisualization(error, data1, data2) {
 
         var arr1 = ["lightblue", "lightgreen", "pink", "white"]
 
-        var pie = d3.layout.pie()
+        var pie = d3.pie()
             .sort(null);
 
         var arc = d3.svg.arc();
