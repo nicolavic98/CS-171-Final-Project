@@ -1,12 +1,12 @@
 // SVG Area
 var margin_line = {
     top: 30,
-    right: 30,
-    bottom: 30,
-    left: 200
+    right: 300,
+    bottom: 100,
+    left: 80
   },
-  width_line = 600 - margin_line.left - margin_line.right,
-  height_line = 400 - margin_line.top - margin_line.bottom;
+  width_line = 1000 - margin_line.left - margin_line.right,
+  height_line = 575 - margin_line.top - margin_line.bottom;
 
 var myVis = d3.select("#line-graph").append("svg")
   .attr("width", width_line + margin_line.left + margin_line.right)
@@ -16,7 +16,7 @@ var myVis = d3.select("#line-graph").append("svg")
 
 
 // scales
-var color = d3.scaleOrdinal(d3.schemeCategory10);
+var color = d3.scaleOrdinal(d3.schemeCategory20b);
 var x = d3.scaleBand()
   .range([0, width_line]);
 var y = d3.scaleLinear()
@@ -120,14 +120,10 @@ console.log(dataNest);
   drawnLine.append("text")
     .attr("class", "label")
     .attr("x", function(d) {
-      if (d.key === "All Other Sources") {
-        return width + 80;
-      } else {
-        return width + 5;
-      }
+        return width_line;
     })
     .attr("y", function(d) {
-      return y(d.values[8].value);
+      return y(d.values[17].value);
     })
     .attr("dy", ".35em")
     .style("stroke", function(d) {
@@ -137,21 +133,28 @@ console.log(dataNest);
       return d.key;
     });
 
+  myVis.append("text")
+    .attr("class", "axislabel")
+    .attr("x", (width_line / 2 + 10))
+    .attr("y", height_line + 60)
+    .attr("dy", ".1em")
+    .style("text-anchor", "end")
+    .text("School Year");
+  myVis.append("text")
+    .attr("class", "axislabel")
+    .attr("x", -150)
+    .attr("y", -65)
+    .attr("dy", ".1em")
+    .attr("transform", "rotate(-90)")
+    .style("text-anchor", "end")
+    .text("Number of Students");
 
-  //myVis.append("text")
-   // .attr("class", "axislabel")
-    //.attr("x", (width / 2 + 10))
-   // .attr("y", height + 50)
-    //.attr("dy", ".1em")
-    //.style("text-anchor", "end")
-   // .text("Year");
-  //myVis.append("text")
-   // .attr("class", "axislabel")
-   // .attr("x", -180)
-   // .attr("y", -70)
-   // .attr("dy", ".1em")
-    //.attr("transform", "rotate(-90)")
-  //  .style("text-anchor", "end")
-//    .text("Funding in millions USD");
+    myVis.append("text")
+        .attr("class", "title_line")
+        .attr("x", 400)
+        .attr("y", 5)
+        .attr("dy", ".1em")
+        .style("text-anchor", "end")
+        .text("What Students Have Studied Over Time");
 
 }
