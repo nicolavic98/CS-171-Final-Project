@@ -30,13 +30,7 @@ d3.csv("data/data2.csv", function(error, csv) {
         d.y1990 = +d.y1990;
         d.y1980 = +d.y1980;
         d.y1976 = +d.y1976;
-        // d.White = +d.White;
-        // d.Black = +d.Black;
-        // d.Hispanic = +d.Hispanic;
-        // d.Asian = +d.Asian;
-        // d.Native = +d.Native;
-        // d.Two = +d.Two;
-        // d.Alien = +d.Alien;
+
     });
     // Store csv data in global variable
     data = csv;

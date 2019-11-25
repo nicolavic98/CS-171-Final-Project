@@ -149,4 +149,12 @@ console.log(dataNest);
     .style("text-anchor", "end")
     .text("Number of Students");
 
+    myVis.append("text")
+        .attr("class", "title_line")
+        .attr("x", 400)
+        .attr("y", 5)
+        .attr("dy", ".1em")
+        .style("text-anchor", "end")
+        .text("What Students Have Studied Over Time");
+
 }
