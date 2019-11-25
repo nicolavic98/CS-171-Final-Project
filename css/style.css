@@ -35,8 +35,13 @@
 }
 
 .bar-elements {
-    margin-left: 175px;
+    margin-left: 180px;
 }
+
+.chart-elements {
+    margin-left: 15px;
+}
+
 .axis {
     font-family: Gabriola;
     font-size: 15px;
