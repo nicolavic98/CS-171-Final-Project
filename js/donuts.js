@@ -109,10 +109,10 @@ function createVisualization(error, data1, data2) {
 
     var arr1 = ["lightblue", "lightgreen", "pink", "white"]
 
-    var pie = d3.layout.pie()
+    var pie = d3h1.pie()
         .sort(null);
 
-    var arc = d3.svg.arc();
+    var arc = d3h1.arc();
 
     var svg = d3.select("#volunteers_area").append("svg")
         .attr("width", width_fin)
