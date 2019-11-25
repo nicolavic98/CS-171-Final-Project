@@ -31,3 +31,13 @@
 .col {
     width: 50%;
 }
+
+#spacer {
+    width: 50%
+}
+
+.line {
+    fill: none;
+    stroke: #4d0000;
+    stroke-width: 1.5;
+}
