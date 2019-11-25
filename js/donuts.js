@@ -302,7 +302,6 @@ function createVisualization(error, data1, data2) {
             .text("was only " + Math.floor((dataset2.collegecost[0] + dataset2.collegecost[1] + dataset2.collegecost[2]) * 100) + "% what it is in present-day.")
 
 
-
         // .text(;
 
 

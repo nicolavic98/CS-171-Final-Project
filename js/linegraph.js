@@ -16,7 +16,7 @@ var myVis = d3.select("#line-graph").append("svg")
 
 
 // scales
-var color = d3.scaleOrdinal(d3.schemeCategory20b);
+var colorscale = d3.scaleOrdinal(d3.schemeCategory20b);
 var x = d3.scaleBand()
   .range([0, width_line]);
 var y = d3.scaleLinear()
@@ -113,7 +113,7 @@ console.log(dataNest);
     .attr("class", "line")
     .attr("d", d => line(d.values))
     .style("stroke", function(d) {
-      return color(d.key)
+      return colorscale(d.key)
     });
 
   // line label
@@ -127,7 +127,7 @@ console.log(dataNest);
     })
     .attr("dy", ".35em")
     .style("stroke", function(d) {
-      return color(d.key)
+      return colorscale(d.key)
     })
     .text(function(d) {
       return d.key;
@@ -151,45 +151,10 @@ console.log(dataNest);
 
     myVis.append("text")
         .attr("class", "title_line")
-        .attr("x", 400)
-        .attr("y", 5)
+        .attr("x", 430)
+        .attr("y", 10)
         .attr("dy", ".1em")
         .style("text-anchor", "end")
         .text("What Students Have Studied Over Time");
 
-
-
-   // d3.select('#select-key-line').on('change', function(a) {
-          //  var linekey = d3.select(this).property('value');
-        //    updateVis(linekey);
-      //  });
-
-
-    //function updateVis(linekey){
-        //y.domain([0, d3.max(data, function (d) {
-            //console.log(d[linekey]);
-          //  return d[linekey];
-        //})]);
-        //console.log(d3.max(data, function (d) {
-          //  return d[linekey];
-        //}));
-
-        //myVis.selectAll(".line")
-            //.data(data)
-            //.transition()
-            //.duration(800)
-            //.attr("y", function (d) {
-              //  return y(d[linekey]);
-            //})
-            //.attr("height", function (d) {
-            //    return height - y(d[linekey]);
-          //  });
-
-        //svg.selectAll(".y-axis")
-          //  .transition()
-        //    .duration(800)
-      //      .call(d3.axisLeft(y));
-    //}
 }
-
-
