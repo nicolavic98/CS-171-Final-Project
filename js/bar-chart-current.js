@@ -41,7 +41,7 @@ d3.csv("data/data2.csv", function(error, csv) {
     // Store csv data in global variable
     data = csv;
 
-    console.log(data);
+    // console.log(data);
 
     // updateVisualization gets automatically called within the data = csv call;
     // basically(whenever the data is set to a value using = operator);
@@ -50,7 +50,7 @@ d3.csv("data/data2.csv", function(error, csv) {
 // Render visualization
 
     var maxCol = d3.max(csv, function (d) {
-        console.log(d.y2017);
+        // console.log(d.y2017);
         return d.y2017;
     });
 
