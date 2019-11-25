@@ -102,4 +102,12 @@ d3.csv("data/data2.csv", function(error, csv) {
         .attr("class", "y-axis")
         .call(d3.axisLeft(y));
 
+    svg.append("text")
+        .attr("x", (750))
+        .attr("y", 0-(28))
+        .attr("text-anchor", "middle")
+        .style("font-size", "16px")
+        .style("text-decoration", "underline")
+        .text("Present Day");
+
 });

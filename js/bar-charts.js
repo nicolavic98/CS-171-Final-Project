@@ -118,6 +118,7 @@ d3.csv("data/data2.csv", function(error, csv) {
         updateVis(newkey);
     });
 
+
 function updateVis(myKey){
     console.log(data[myKey]);
     console.log("changling");
