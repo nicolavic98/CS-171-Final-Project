@@ -157,39 +157,4 @@ console.log(dataNest);
         .style("text-anchor", "end")
         .text("What Students Have Studied Over Time");
 
-
-
-   // d3.select('#select-key-line').on('change', function(a) {
-          //  var linekey = d3.select(this).property('value');
-        //    updateVis(linekey);
-      //  });
-
-
-    //function updateVis(linekey){
-        //y.domain([0, d3.max(data, function (d) {
-            //console.log(d[linekey]);
-          //  return d[linekey];
-        //})]);
-        //console.log(d3.max(data, function (d) {
-          //  return d[linekey];
-        //}));
-
-        //myVis.selectAll(".line")
-            //.data(data)
-            //.transition()
-            //.duration(800)
-            //.attr("y", function (d) {
-              //  return y(d[linekey]);
-            //})
-            //.attr("height", function (d) {
-            //    return height - y(d[linekey]);
-          //  });
-
-        //svg.selectAll(".y-axis")
-          //  .transition()
-        //    .duration(800)
-      //      .call(d3.axisLeft(y));
-    //}
 }
-
-
