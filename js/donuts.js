@@ -99,6 +99,7 @@ function createVisualization(error, data1, data2) {
         };
     }
 
+    // this is the issue now; if we comment this out and set it to a string it works
     var clr = function (d, i, j) {
         var arr = [
             ["red", "green", "blue"],
