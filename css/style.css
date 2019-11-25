@@ -33,3 +33,18 @@
     stroke: #4d0000;
     stroke-width: 1.5;
 }
+
+.axis {
+    font-family: Gabriola;
+    font-size: 15px;
+}
+
+.label {
+    font-family: Gabriola;
+    font-size: 15px;
+}
+
+.axislabel {
+    font-family: Gabriola;
+    font-size: 20px;
+}
