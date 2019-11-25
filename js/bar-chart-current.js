@@ -1,4 +1,4 @@
-console.log("main2js")
+// console.log("main2js")
 // SVG drawing area
 
 var margin_2 = {top: 40, right: 10, bottom: 60, left: 50};

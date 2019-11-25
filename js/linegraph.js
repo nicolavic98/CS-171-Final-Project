@@ -60,7 +60,7 @@ function dataHandler(error, data2, degreeData) {
     })
   });
 
-console.log(dataNest);
+//console.log(dataNest);
 
   // data processing help came from this website god bless https://bl.ocks.org/jqadrad/a58719d82741b1642a2061c071ae2375
 
