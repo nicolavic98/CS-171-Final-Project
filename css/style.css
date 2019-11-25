@@ -23,3 +23,17 @@
     text-decoration: none;
     color: #555;
 }
+<<<<<<< HEAD
+=======
+
+
+#spacer {
+    width: 50%
+}
+
+.line {
+    fill: none;
+    stroke: #4d0000;
+    stroke-width: 1.5;
+}
+>>>>>>> 15b99231e6d0176b1a8a3d6a88e24f121bf2ab83
