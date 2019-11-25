@@ -57,4 +57,6 @@
     font-size: 20px;
 }
 
-
+.city--hover {
+    stroke: #000;
+}
