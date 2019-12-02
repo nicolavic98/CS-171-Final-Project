@@ -62,8 +62,6 @@ function dataHandler(error, data2, degreeData) {
 
 // console.log(dataNest);
 
-  // data processing help came from this website god bless https://bl.ocks.org/jqadrad/a58719d82741b1642a2061c071ae2375
-
 
   x.domain(["1970-71","1975-76","1980-81","1985-86","1990-91","1995-96","2000-01","2005-06","2006-07","2008-09","2009-10","2010-11","2011-12","2012-13","2013-14","2014-15","2015-16","2016-17"])
   y.domain([
@@ -97,7 +95,7 @@ function dataHandler(error, data2, degreeData) {
   // line function
   var line = d3.line()
     .x(function(d) {
-      return x(d.year);
+      return x(d.year) + 18;
     })
     .y(function(d) {
       return y(d.value);
