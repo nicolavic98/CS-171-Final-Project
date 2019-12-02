@@ -4,14 +4,6 @@ function pieChart(d3) {
         height_fin = 500,
         cwidth_fin = 30;
 
-    var color = function(i, j) {
-        var arr = [
-            ["#ff0000", "#00ff00", "#0000ff"],
-            ["#0000ff", "#ffffff"]
-        ];
-        return arr[j][i];
-    };
-
     queue()
         .defer(d3.csv, "data/costall.csv")
         .defer(d3.csv, "data/finaid.csv")
@@ -109,7 +101,7 @@ function pieChart(d3) {
             return arr[j][i];
         }
 
-        var arr1 = ["lightblue", "lightgreen", "pink", "white"]
+        var arr1 = ["#401412","#800F00", "#D13D2A", "grey"]
 
         var pie = d3.layout.pie()
             .sort(null);
@@ -134,7 +126,7 @@ function pieChart(d3) {
                 var currentcolor = arr1[index]
 
                 if (index == 0) {
-                    arr1[index] = "orange"
+                    arr1[index] = "black"
                 }
                 if (index == 1) {
                     arr1[index] = "white"
@@ -170,25 +162,26 @@ function pieChart(d3) {
             .attr("cx", -110)
             .attr("cy", -44 )
             .attr("r", 8 )
-            .style("fill","lightblue");
+            .style("fill","#401412");
+
 
         svg.append("circle")
             .attr("cx", -80)
             .attr("cy", -24 )
             .attr("r", 8 )
-            .style("fill","lightgreen");
+            .style("fill","#800F00");
 
         svg.append("circle")
             .attr("cx", -80)
             .attr("cy", -4 )
             .attr("r", 8 )
-            .style("fill","pink");
+            .style("fill","#D13D2A");
 
         svg.append("circle")
             .attr("cx", -90)
             .attr("cy", 17 )
             .attr("r", 8 )
-            .style("fill","orange");
+            .style("fill","black");
 
 
 
@@ -203,14 +196,6 @@ function pieChart(d3) {
 
             d3.selectAll(".secondsvg").remove();
             d3.selectAll(".newtext").remove();
-
-            var color = function (i, j) {
-                var arr = [
-                    ["#ff0000", "#00ff00", "#0000ff"],
-                    ["#0000ff", "#ffffff"]
-                ];
-                return arr[j][i];
-            };
 
 
             console.log(myKey)
@@ -259,7 +244,7 @@ function pieChart(d3) {
                 return arr[j][i];
             }
 
-            var arr1 = ["lightblue", "lightgreen", "pink", "white"]
+            var arr1 = ["#401412","#800F00", "#D13D2A", "white"]
 
             var pie = d3.layout.pie()
                 .sort(null);
