@@ -4,20 +4,12 @@ function pieChart(d3) {
         height_fin = 500,
         cwidth_fin = 30;
 
-    var color = function(i, j) {
-        var arr = [
-            ["#ff0000", "#00ff00", "#0000ff"],
-            ["#0000ff", "#ffffff"]
-        ];
-        return arr[j][i];
-    };
-
     queue()
         .defer(d3.csv, "data/costall.csv")
         .defer(d3.csv, "data/finaid.csv")
         .await(createVisualization);
 
-    console.log("Here?")
+    // console.log("Here?")
 
     function createVisualization(error, data1, data2) {
         var dataset = {
@@ -25,9 +17,9 @@ function pieChart(d3) {
             finaid: []
 
         };
-        console.log(data1);
-        console.log(data2);
-        console.log(data1[0].Year);
+        // console.log(data1);
+        // console.log(data2);
+        // console.log(data1[0].Year);
 
         data1.forEach(function (d) {
             d.B2 = +d.B2;
@@ -62,28 +54,28 @@ function pieChart(d3) {
             d.Year = +d.Year;
         });
 
-        console.log(data1);
-        console.log(data2);
+        // console.log(data1);
+        // console.log(data2);
 
-        console.log(dataset.collegecost);
+        // console.log(dataset.collegecost);
 
 
         mydata1 = data1;
         mydata2 = data2;
-        console.log(mydata1);
+        // console.log(mydata1);
 
 
-        console.log(data1[50].Year)
-        dataset.collegecost.push(data1[50].TFAll)
-        dataset.collegecost.push(data1[50].RAll)
-        dataset.collegecost.push(data1[50].BAll)
+        // console.log(data1[50].Year)
+        dataset.collegecost.push(data1[50].TFAll);
+        dataset.collegecost.push(data1[50].RAll);
+        dataset.collegecost.push(data1[50].BAll);
 
         totaltuition = mydata1[50].TFRBAll;
 
         dataset.finaid.push((data2[6].AnyAllTotal) / (data1[50].TFRBAll));
         dataset.finaid.push(1 - (data2[6].AnyAllTotal) / (data1[50].TFRBAll));
 
-        console.log(dataset)
+        // console.log(dataset)
 
         function tweenPie(finish, k) {
             var j = parseInt(d3.select(this).attr("note"));
@@ -94,7 +86,7 @@ function pieChart(d3) {
                 outerRadius: 180 - cwidth_fin * j
 
             };
-            console.log(j)
+            // console.log(j)
             var i = d3.interpolate(start, finish);
             return function (d, j) {
                 return arc(i(d));
@@ -107,9 +99,9 @@ function pieChart(d3) {
                 ["blue"]
             ];
             return arr[j][i];
-        }
+        };
 
-        var arr1 = ["lightblue", "lightgreen", "pink", "white"]
+        var arr1 = ["#401412","#800F00", "#D13D2A", "grey"];
 
         var pie = d3.layout.pie()
             .sort(null);
@@ -131,10 +123,10 @@ function pieChart(d3) {
                 return j;
             }).attr("class", clr)
             .style("fill", function (d, index, index2) {
-                var currentcolor = arr1[index]
+                var currentcolor = arr1[index];
 
                 if (index == 0) {
-                    arr1[index] = "orange"
+                    arr1[index] = "black"
                 }
                 if (index == 1) {
                     arr1[index] = "white"
@@ -144,22 +136,22 @@ function pieChart(d3) {
             })
             .transition().duration(750)
             .attrTween("d", tweenPie);
-        console.log("herenow?")
+        // console.log("herenow?")
 
         svg.append("text")
             .attr('x', -100)
             .attr('y', -40)
-            .text("Tuition & Fees: $" + dataset.collegecost[0])
+            .text("Tuition & Fees: $" + dataset.collegecost[0]);
 
         svg.append("text")
             .attr('x', -70)
             .attr('y', -20)
-            .text("Room: $" + dataset.collegecost[1])
+            .text("Room: $" + dataset.collegecost[1]);
 
         svg.append("text")
             .attr('x', -70)
             .attr('y', 0)
-            .text("Board: $" + dataset.collegecost[2])
+            .text("Board: $" + dataset.collegecost[2]);
 
         svg.append("text")
             .attr('x', -80)
@@ -170,25 +162,26 @@ function pieChart(d3) {
             .attr("cx", -110)
             .attr("cy", -44 )
             .attr("r", 8 )
-            .style("fill","lightblue");
+            .style("fill","#401412");
+
 
         svg.append("circle")
             .attr("cx", -80)
             .attr("cy", -24 )
             .attr("r", 8 )
-            .style("fill","lightgreen");
+            .style("fill","#800F00");
 
         svg.append("circle")
             .attr("cx", -80)
             .attr("cy", -4 )
             .attr("r", 8 )
-            .style("fill","pink");
+            .style("fill","#D13D2A");
 
         svg.append("circle")
             .attr("cx", -90)
             .attr("cy", 17 )
             .attr("r", 8 )
-            .style("fill","orange");
+            .style("fill","black");
 
 
 
@@ -204,16 +197,8 @@ function pieChart(d3) {
             d3.selectAll(".secondsvg").remove();
             d3.selectAll(".newtext").remove();
 
-            var color = function (i, j) {
-                var arr = [
-                    ["#ff0000", "#00ff00", "#0000ff"],
-                    ["#0000ff", "#ffffff"]
-                ];
-                return arr[j][i];
-            };
 
-
-            console.log(myKey)
+            console.log(myKey);
             var dataset2 = {
                 collegecost: [],
                 finaid: []
@@ -224,13 +209,13 @@ function pieChart(d3) {
 
             mydata1.forEach(function (d, index) {
                 if (d.Year == myKey) {
-                    dataset2.collegecost.push(d.TFAll / totaltuition)
-                    dataset2.collegecost.push(d.RAll / totaltuition)
-                    dataset2.collegecost.push(d.BAll / totaltuition)
-                    dataset2.collegecost.push(1 - d.BAll / totaltuition - d.RAll / totaltuition - d.TFAll / totaltuition)
+                    dataset2.collegecost.push(d.TFAll / totaltuition);
+                    dataset2.collegecost.push(d.RAll / totaltuition);
+                    dataset2.collegecost.push(d.BAll / totaltuition);
+                    dataset2.collegecost.push(1 - d.BAll / totaltuition - d.RAll / totaltuition - d.TFAll / totaltuition);
                     myindex = index
                 }
-            })
+            });
 
 
             console.log(dataset2)
@@ -257,9 +242,9 @@ function pieChart(d3) {
                     ["blue"]
                 ];
                 return arr[j][i];
-            }
+            };
 
-            var arr1 = ["lightblue", "lightgreen", "pink", "white"]
+            var arr1 = ["#401412","#800F00", "#D13D2A", "white"];
 
             var pie = d3.layout.pie()
                 .sort(null);
