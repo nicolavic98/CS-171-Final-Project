@@ -60,7 +60,7 @@ function dataHandler(error, data2, degreeData) {
     })
   });
 
-//console.log(dataNest);
+// console.log(dataNest);
 
   // data processing help came from this website god bless https://bl.ocks.org/jqadrad/a58719d82741b1642a2061c071ae2375
 
@@ -115,17 +115,7 @@ function dataHandler(error, data2, degreeData) {
     .style("stroke", function(d) {
       return colorscale(d.key)
     })
-    .on("mouseover",
-      myVis.append("text")
-        .attr("x", function (d) {
-              return d
-            })
-        .attr("y", function (d) {
-            })
-        .text(function(d) {
-              return d.key;
-    });
-    )
+      .on("mouseover", handleMouseOver);
 
   // line label
   drawnLine.append("text")
@@ -167,5 +157,18 @@ function dataHandler(error, data2, degreeData) {
         .attr("dy", ".1em")
         .style("text-anchor", "end")
         .text("What Students Have Studied Over Time");
+
+  function handleMouseOver(d, i) {
+
+    // Specify where to put label of text
+    myVis.append("text")
+        .attr({
+            x: function() { return x(d.values[17].value); },
+            y: function() { return y(d.values[17].value); }
+        })
+        .text(function() {
+          return d.key;  // Value of the text
+        });
+  }
 
 }
