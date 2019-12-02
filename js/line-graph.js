@@ -114,7 +114,18 @@ function dataHandler(error, data2, degreeData) {
     .attr("d", d => line(d.values))
     .style("stroke", function(d) {
       return colorscale(d.key)
+    })
+    .on("mouseover",
+      myVis.append("text")
+        .attr("x", function (d) {
+              return d
+            })
+        .attr("y", function (d) {
+            })
+        .text(function(d) {
+              return d.key;
     });
+    )
 
   // line label
   drawnLine.append("text")
