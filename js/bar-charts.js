@@ -3,15 +3,23 @@
 
 var margin = {top: 40, right: 10, bottom: 60, left: 50};
 
-var width = 1000 - margin.left - margin.right,
+var width = 375 - margin.left - margin.right,
     height = 375 - margin.top - margin.bottom;
 
+//https://bl.ocks.org/d3noob/5987480
+// help getting two graphs in one svg
 
 var svg = d3.select("#chart-area").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
+     .attr("width", (2*width) + (4*margin.left) + margin.right)
+     .attr("height", height + margin.top + margin.bottom)
+//     .append("g")
+//     .attr("transform", "translate(" + (margin.left) + "," + margin.top + ")");
+
+var chart1 = svg.append("g")
     .attr("transform", "translate(" + (margin.left) + "," + margin.top + ")");
+
+var chart2 = svg.append("g")
+    .attr("transform", "translate(" + ((4*margin.left) + width) +  "," + margin.top + ")");
 
 // Initialize data
 
@@ -53,7 +61,7 @@ d3.csv("data/data2.csv", function(error, csv) {
 // console.log(maxCol);
 
     var x = d3.scaleBand()
-        .range([0, width/3])
+        .range([0, width])
         .padding(0.01);
     var y = d3.scaleLinear()
         .range([height, 0]);
@@ -74,7 +82,7 @@ d3.csv("data/data2.csv", function(error, csv) {
     // var myData = data[data.length-1];
     //console.log(data);
 
-    svg.selectAll(".bar")
+    chart1.selectAll(".bar")
         .data(data)
         .enter().append("rect")
         .attr("class", "bar")
@@ -90,7 +98,7 @@ d3.csv("data/data2.csv", function(error, csv) {
         });
     // .attr("transform", "translate(" + (30) + "," + (-30) + ")");
 
-    svg.append("g")
+    chart1.append("g")
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(x))
         .selectAll("text")
@@ -100,7 +108,7 @@ d3.csv("data/data2.csv", function(error, csv) {
         .attr("transform", "rotate(-30)");
 
     // add the y Axis
-    svg.append("g")
+    chart1.append("g")
         .attr("class", "y-axis")
         .call(d3.axisLeft(y));
 
@@ -123,7 +131,7 @@ function updateVis(myKey){
         return d[myKey];
     }));
 
-    svg.selectAll(".bar")
+    chart1.selectAll(".bar")
         .data(data)
         .transition()
         .duration(800)
@@ -134,10 +142,67 @@ function updateVis(myKey){
             return height - y(d[myKey]);
         });
 
-    svg.selectAll(".y-axis")
+    chart1.selectAll(".y-axis")
         .transition()
         .duration(800)
         .call(d3.axisLeft(y));
 }
+
+// SECOND CHART
+    //SECOND CHART
+    //SECOND CHART
+    var x2 = d3.scaleBand()
+        .range([0, width])
+        .padding(0.01);
+    var y2 = d3.scaleLinear()
+        .range([height, 0]);
+
+    x2.domain(data.map(function (d) {
+        return d.Race;
+    }));
+    y2.domain([0, 13000]);
+
+
+    chart2.selectAll(".bar")
+        .data(data)
+        .enter().append("rect")
+        .attr("class", "bar")
+        .attr("x", function (d) {
+            return x2(d.Race)+ 15;
+        })
+        .attr("width", x2.bandwidth() / 2)
+        .attr("y", function (d) {
+            return y2(d.y2017);
+        })
+        .attr("height", function (d) {
+            return height - y2(d.y2017);
+        });
+    // .attr("transform", "translate(" + (30) + "," + (-30) + ")");
+
+    chart2.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x2))
+        .selectAll("text")
+        .style("text-anchor", "end")
+        .attr("dx", "-.8em")
+        .attr("dy", ".15em")
+        .attr("transform", "rotate(-30)");
+
+    // add the y Axis
+    chart2.append("g")
+        .attr("class", "y-axis")
+        .call(d3.axisLeft(y2));
+
+    chart2.append("text")
+        .attr("x", (150))
+        .attr("y", 0-(28))
+        .attr("text-anchor", "middle")
+        .style("font-size", "16px")
+        .style("text-decoration", "underline")
+        .text("Present Day");
+
+
+
+
 
 });
