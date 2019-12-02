@@ -67,9 +67,7 @@ d3.csv("data/data2.csv", function(error, csv) {
     x.domain(data.map(function (d) {
         return d.Race;
     }));
-    y.domain([0, d3.max(data, function (d) {
-        return d.y2017;
-    })]);
+    y.domain([0, 13000]);
 
 
     svg_2.selectAll(".bar")

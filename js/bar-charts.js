@@ -61,9 +61,7 @@ d3.csv("data/data2.csv", function(error, csv) {
     x.domain(data.map(function (d) {
         return d.Race;
     }));
-    y.domain([0, d3.max(data, function (d) {
-        return d.y2017;
-    })]);
+    y.domain([0, 13000]);
 
 
     // var newdata = data[data.length-1];
@@ -117,10 +115,10 @@ function updateVis(myKey){
     console.log(data[myKey]);
     console.log("changling");
     // svg.selectAll(".bar").remove();
-    y.domain([0, d3.max(data, function (d) {
-        console.log(d[myKey]);
-        return d[myKey];
-    })]);
+   // y.domain([0, d3.max(data, function (d) {
+      //  console.log(d[myKey]);
+       // return d[myKey];
+   // })]);
     console.log(d3.max(data, function (d) {
         return d[myKey];
     }));
