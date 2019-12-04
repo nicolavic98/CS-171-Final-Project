@@ -65,3 +65,7 @@
 .bar {
     fill: maroon;
 }
+
+#chart-area {
+    margin: auto;
+}
