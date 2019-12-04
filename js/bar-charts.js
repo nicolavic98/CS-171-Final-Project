@@ -15,6 +15,8 @@ var svg = d3.select("#chart-area").append("svg")
 //     .append("g")
 //     .attr("transform", "translate(" + (margin.left) + "," + margin.top + ")");
 
+// svg.on("mouseover",)
+
 var chart1 = svg.append("g")
     .attr("transform", "translate(" + (margin.left) + "," + margin.top + ")");
 
@@ -86,6 +88,7 @@ d3.csv("data/data2.csv", function(error, csv) {
         .style("font-size","10px")
         .offset([-10, 0])
         .html(function(d) {
+            // console.log(d3.select('#select-key'));
             return Math.floor(d.y2017);
         });
 
