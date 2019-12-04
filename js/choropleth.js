@@ -73,14 +73,14 @@ queue()
 //             }
 //         }
 //
-//         updateChoropleth(error, mapTopJson, malariaDataCsv);
-//     });
+        updateChoropleth(error, mapTopJson, enrollmentCsv);
+    });
 //
 //
-// function updateChoropleth() { //this serves as the "enter" part; update to follow
+function updateChoropleth() { //this serves as the "enter" part; update to follow
 //
-//     //conversion to geojson
-//     var usamap = topojson.feature(data1, data1.objects.collection).features;
+    //conversion to geojson
+    var usamap = topojson.feature(data1, data1.objects.collection).features;
 //
 //     color2.domain([
 //         0,
@@ -90,12 +90,12 @@ queue()
 //     ]);
 //
 //
-//     choropleth.selectAll("path")
-//         .data(usamap)
-//         .enter()
-//         .append("path")
-//         .attr("class", "maps")
-//         .attr("d", path)
+    choropleth.selectAll("path")
+        .data(usamap)
+        .enter()
+        .append("path")
+        .attr("class", "maps")
+        .attr("d", path);
 //         .on("mouseover", function(d) {
 //             tooltip.transition()
 //                 .duration(200)
@@ -122,135 +122,7 @@ queue()
 //                 return color2(d.properties.UN_population);
 //             }
 //         });
-//
-//     // legend, following example from https://www.d3-graph-gallery.com/graph/custom_legend.html
-//     choropleth.append("text")
-//         .attr("x", 180)
-//         .attr("y", 100)
-//         .text("Population")
-//         .attr("class", "legend-title")
-//         .attr("alignment-baseline", "middle");
-//     choropleth.append("circle")
-//         .attr("cx", 180)
-//         .attr("cy", 130)
-//         .attr("r", 6)
-//         .style("fill", "rgb(255,255,255");
-//     choropleth.append("circle")
-//         .attr("cx", 180)
-//         .attr("cy", 160)
-//         .attr("r", 6)
-//         .style("fill", "rgb(255,204,204)");
-//     choropleth.append("circle")
-//         .attr("cx", 180)
-//         .attr("cy", 190)
-//         .attr("r", 6)
-//         .style("fill", "rgb(255,102,102)");
-//     choropleth.append("circle")
-//         .attr("cx", 180)
-//         .attr("cy", 220)
-//         .attr("r", 6)
-//         .style("fill", "rgb(255,51,51)");
-//     choropleth.append("circle")
-//         .attr("cx", 180)
-//         .attr("cy", 250)
-//         .attr("r", 6)
-//         .style("fill", "rgb(255,0,0)");
-//     choropleth.append("circle")
-//         .attr("cx", 180)
-//         .attr("cy", 280)
-//         .attr("r", 6)
-//         .style("fill", "rgb(204,0,0)");
-//     choropleth.append("circle")
-//         .attr("cx", 180)
-//         .attr("cy", 310)
-//         .attr("r", 6)
-//         .style("fill", "rgb(153,0,0)");
-//     choropleth.append("circle")
-//         .attr("cx", 180)
-//         .attr("cy", 340)
-//         .attr("r", 6)
-//         .style("fill", "rgb(77,0,0)");
-//     choropleth.append("circle")
-//         .attr("cx", 180)
-//         .attr("cy", 370)
-//         .attr("r", 6)
-//         .style("fill", "#999393");
-//     choropleth.append("text")
-//         .attr("x", 200)
-//         .attr("y", 130)
-//         .text(0)
-//         .attr("class", "legend-label")
-//         .attr("alignment-baseline", "middle");
-//     choropleth.append("text")
-//         .attr("x", 200)
-//         .attr("y", 160)
-//         .text(Math.floor((1 / 8) * (d3.max(data2, function(d) {
-//             return d.UN_population;
-//         }))))
-//         .attr("class", "legend-label")
-//         .attr("alignment-baseline", "middle");
-//     choropleth.append("text")
-//         .attr("x", 200)
-//         .attr("y", 190)
-//         .text(Math.floor((2 / 8) * (d3.max(data2, function(d) {
-//             return d.UN_population;
-//         }))))
-//         .attr("class", "legend-label")
-//         .attr("alignment-baseline", "middle");
-//     choropleth.append("text")
-//         .attr("x", 200)
-//         .attr("y", 220)
-//         .text(Math.floor((3 / 8) * (d3.max(data2, function(d) {
-//             return d.UN_population;
-//         }))))
-//         .attr("class", "legend-label")
-//         .attr("alignment-baseline", "middle");
-//     choropleth.append("text")
-//         .attr("x", 200)
-//         .attr("y", 250)
-//         .text(Math.floor((4 / 8) * (d3.max(data2, function(d) {
-//             return d.UN_population;
-//         }))))
-//         .attr("class", "legend-label")
-//         .attr("alignment-baseline", "middle");
-//     choropleth.append("text")
-//         .attr("x", 200)
-//         .attr("y", 280)
-//         .text(Math.floor((5 / 8) * (d3.max(data2, function(d) {
-//             return d.UN_population;
-//         }))))
-//         .attr("class", "legend-label")
-//         .attr("alignment-baseline", "middle");
-//     choropleth.append("text")
-//         .attr("x", 200)
-//         .attr("y", 310)
-//         .text(Math.floor((6 / 8) * (d3.max(data2, function(d) {
-//             return d.UN_population;
-//         }))))
-//         .attr("class", "legend-label")
-//         .attr("alignment-baseline", "middle");
-//     choropleth.append("text")
-//         .attr("x", 200)
-//         .attr("y", 340)
-//         .text(Math.floor((6 / 8) * (d3.max(data2, function(d) {
-//             return d.UN_population;
-//         }))) + " and up")
-//         .attr("class", "legend-label")
-//         .attr("alignment-baseline", "middle");
-//     choropleth.append("text")
-//         .attr("x", 200)
-//         .attr("y", 370)
-//         .text("No data available")
-//         .attr("class", "legend-label")
-//         .attr("alignment-baseline", "middle");
-//
-//     // choropleth.append("text")
-//     //     .attr("x", 800)
-//     //     .attr("y", 200)
-//     //     .attr("class", "infoForMap")
-//     //     .attr("alignment-baseline", "middle")
-//     //     .text("Malaria cases <br> The number of malaria cases globally fell from an estimated 262 million in 2000 (range: 205– 316 million), to 214 million in 2015 (range: 149–303 million), a decline of 18%. Most cases in 2015 are estimated to have occurred in the WHO African Region (88%), followed by the WHO South-East Asia Region (10%) and the WHO Eastern Mediterranean Region (2%). Malaria deaths. The number of malaria deaths globally fell from an estimated 839 000 in 2000 (range: 653 000–1.1 million), to 438 000 in 2015 (range: 236 000–635 000), a decline of 48%. Most deaths in 2015 were in the WHO African Region (90%), followed by the WHO South-East Asia Region (7%) and the WHO Eastern Mediterranean Region (2%). The malaria mortality rate, which takes into account population growth, is estimated to have decreased by 60% globally between 2000 and 2015.");
-// }
+}
 // var selection;
 //
 // // here comes the update
@@ -275,94 +147,4 @@ queue()
 //                 return color2(d.properties[selection]);
 //             }
 //         });
-//     choropleth.selectAll(".legend-label").remove();
-//     choropleth.selectAll(".legend-title").remove();
-//
-//     choropleth.append("text")
-//         .attr("x", 200)
-//         .attr("y", 130)
-//         .text(0)
-//         .attr("class", "legend-label")
-//         .attr("alignment-baseline", "middle");
-//     choropleth.append("text")
-//         .attr("x", 200)
-//         .attr("y", 160)
-//         .text(Math.floor((1 / 8) * (d3.max(usamap, function(d) {
-//             return d.properties[selection];
-//         }))))
-//         .attr("class", "legend-label")
-//         .attr("alignment-baseline", "middle");
-//     choropleth.append("text")
-//         .attr("x", 200)
-//         .attr("y", 190)
-//         .text(Math.floor((2 / 8) * (d3.max(usamap, function(d) {
-//             return d.properties[selection];
-//         }))))
-//         .attr("class", "legend-label")
-//         .attr("alignment-baseline", "middle");
-//     choropleth.append("text")
-//         .attr("x", 200)
-//         .attr("y", 220)
-//         .text(Math.floor((3 / 8) * (d3.max(usamap, function(d) {
-//             return d.properties[selection];
-//         }))))
-//         .attr("class", "legend-label")
-//         .attr("alignment-baseline", "middle");
-//     choropleth.append("text")
-//         .attr("x", 200)
-//         .attr("y", 250)
-//         .text(Math.floor((4 / 8) * (d3.max(usamap, function(d) {
-//             return d.properties[selection];
-//         }))))
-//         .attr("class", "legend-label")
-//         .attr("alignment-baseline", "middle");
-//     choropleth.append("text")
-//         .attr("x", 200)
-//         .attr("y", 280)
-//         .text(Math.floor((5 / 8) * (d3.max(usamap, function(d) {
-//             return d.properties[selection];
-//         }))))
-//         .attr("class", "legend-label")
-//         .attr("alignment-baseline", "middle");
-//     choropleth.append("text")
-//         .attr("x", 200)
-//         .attr("y", 310)
-//         .text(Math.floor((6 / 8) * (d3.max(usamap, function(d) {
-//             return d.properties[selection];
-//         }))))
-//         .attr("class", "legend-label")
-//         .attr("alignment-baseline", "middle");
-//     choropleth.append("text")
-//         .attr("x", 200)
-//         .attr("y", 340)
-//         .text(Math.floor((6 / 8) * (d3.max(usamap, function(d) {
-//             return d.properties[selection];
-//         }))) + " and up")
-//         .attr("class", "legend-label")
-//         .attr("alignment-baseline", "middle");
-//     choropleth.append("text")
-//         .attr("x", 200)
-//         .attr("y", 370)
-//         .text("No data available")
-//         .attr("class", "legend-label")
-//         .attr("alignment-baseline", "middle");
-//     choropleth.append("text")
-//         .attr("x", 180)
-//         .attr("y", 100)
-//         .text(function(d) {
-//             if (selection === "At_high_risk") {
-//                 return "Percentage at High Risk"
-//             } else if (selection === "UN_population") {
-//                 return "Population"
-//             } else if (selection === "At__risk") {
-//                 return "Percentage at Risk"
-//             }
-//             if (selection === "Suspected_malaria_cases") {
-//                 return "Number of Suspected Malaria Cases"
-//             } else {
-//                 return "Number of Diagnosed Malaria Cases"
-//             }
-//         })
-//         .attr("class", "legend-title")
-//         .attr("alignment-baseline", "middle");
-});
+// });
