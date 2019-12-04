@@ -120,6 +120,8 @@ function dataHandler(error, data2, degreeData) {
     .style("stroke", function(d) {
       return colorscale(d.key)
     })
+    .style("opacity", .5)
+    .style('stroke-width', .75)
     // hover effects
       // http://jsfiddle.net/pnavarrc/4fgv4/2
       // sample code for changes in line thickness on hover
@@ -130,21 +132,20 @@ function dataHandler(error, data2, degreeData) {
               .style("fill", colorscale(d.key));
           d3.select(this)
               .transition()
-              .duration(100)
+              .duration(0)
+              .style("opacity",1)
               .style('stroke-width', 4);
       })
       .on('mouseout', function(d){
           drawnLine.selectAll("text").remove();
           d3.select(this)
               .transition()
-              .duration(300)
-              .style('stroke-width', d.w);
-       })
-      .on("mouseenter", entered);
+              .duration(100)
+              .style('stroke-width', d.w)
+              .style("opacity",.5);
+       });
 
-    function entered() {
-        path.style("mix-blend-mode", null).attr("stroke", "#ddd");
-    }
+
 
 
   myVis.append("text")
