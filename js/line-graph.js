@@ -113,27 +113,55 @@ function dataHandler(error, data2, degreeData) {
     .style("stroke", function(d) {
       return colorscale(d.key)
     })
-      .on("mouseover", handleMouseOver);
-      // .on("mouseout", handleMouseOut);
+
+    // hover effects
+      .on('mouseover', function(d){
+          console.log("YES");
+          drawnLine.append("text")
+              .attr("class", "label")
+              .attr("x", function (d) {
+                  return width_line;
+              })
+              .attr("y", function (d) {
+                  return y(d.values[17].value);
+              })
+              .attr("dy", ".35em")
+              .style("stroke", function (d) {
+                  return colorscale(d.key)
+              })
+              .text(function (d) {
+                  return d.key;
+              });
+      })
+      .on('mouseout', function(d){
+          drawnLine.selectAll("text").remove();
+          console.log("NO");
+  });
+      // .on("mouseover", handleMouseOver);
+      // // .on("mouseout", handleMouseOut);
+
+    // .on("mouseover", handleMouseOver);
+    //   // .on("mouseout", handleMouseOut);
+
 
   // line label
-  function handleMouseOver() {
-      drawnLine.append("text")
-          .attr("class", "label")
-          .attr("x", function (d) {
-              return width_line;
-          })
-          .attr("y", function (d) {
-              return y(d.values[17].value);
-          })
-          .attr("dy", ".35em")
-          .style("stroke", function (d) {
-              return colorscale(d.key)
-          })
-          .text(function (d) {
-              return d.key;
-          });
-  }
+  // function handleMouseOver() {
+  //     drawnLine.append("text")
+  //         .attr("class", "label")
+  //         .attr("x", function (d) {
+  //             return width_line;
+  //         })
+  //         .attr("y", function (d) {
+  //             return y(d.values[17].value);
+  //         })
+  //         .attr("dy", ".35em")
+  //         .style("stroke", function (d) {
+  //             return colorscale(d.key)
+  //         })
+  //         .text(function (d) {
+  //             return d.key;
+  //         });
+  // }
   // function handleMouseOut() {
   //     drawnLine.remove(".label");
   // }

@@ -1,10 +1,10 @@
 //console.log("main2js")
 // SVG drawing area
 
-var margin = {top: 40, right: 10, bottom: 60, left: 50};
+var margin = {top: 40, right: 10, bottom: 90, left: 60};
 
-var width = 375 - margin.left - margin.right,
-    height = 375 - margin.top - margin.bottom;
+var width = 385 - margin.left - margin.right,
+    height = 410 - margin.top - margin.bottom;
 
 //https://bl.ocks.org/d3noob/5987480
 // help getting two graphs in one svg
@@ -81,6 +81,15 @@ d3.csv("data/data2.csv", function(error, csv) {
 
     // var myData = data[data.length-1];
     //console.log(data);
+    var tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .style("font-size","10px")
+        .offset([-10, 0])
+        .html(function(d) {
+            return Math.floor(d.y2017);
+        });
+
+    svg.call(tip);
 
     chart1.selectAll(".bar")
         .data(data)
@@ -93,6 +102,8 @@ d3.csv("data/data2.csv", function(error, csv) {
         .attr("y", function (d) {
             return y(d.y2017);
         })
+        .on('mouseover', tip.show)
+        .on('mouseout', tip.hide)
         .attr("height", function (d) {
             return height - y(d.y2017);
         });
@@ -112,6 +123,21 @@ d3.csv("data/data2.csv", function(error, csv) {
         .attr("class", "y-axis")
         .call(d3.axisLeft(y));
 
+    ///axis labels
+    chart1.append("text")
+        .attr("x", (160))
+        .attr("y", 360)
+        .attr("text-anchor", "middle")
+        .style("font-size", "14px")
+        .text("Ethnicity");
+    chart1.append("text")
+        .attr("x", -150)
+        .attr("y", -45)
+        .attr("transform", "rotate(-90)")
+        .attr("text-anchor", "middle")
+        .style("font-size", "14px")
+        .text("# of Enrolled Students");
+
     d3.select('#select-key').on('change', function(a) {
         var newkey = d3.select(this).property('value');
         console.log(newkey);
@@ -120,8 +146,7 @@ d3.csv("data/data2.csv", function(error, csv) {
 
 
 function updateVis(myKey){
-    console.log(data[myKey]);
-    console.log("changling");
+    // console.log("changling");
     // svg.selectAll(".bar").remove();
    // y.domain([0, d3.max(data, function (d) {
       //  console.log(d[myKey]);
@@ -174,6 +199,8 @@ function updateVis(myKey){
         .attr("y", function (d) {
             return y2(d.y2017);
         })
+        .on('mouseover', tip.show)
+        .on('mouseout', tip.hide)
         .attr("height", function (d) {
             return height - y2(d.y2017);
         });
@@ -202,7 +229,19 @@ function updateVis(myKey){
         .text("Present Day");
 
 
-
-
+    //axis labels
+    chart2.append("text")
+        .attr("x", (160))
+        .attr("y", 360)
+        .attr("text-anchor", "middle")
+        .style("font-size", "14px")
+        .text("Ethnicity");
+    chart2.append("text")
+        .attr("x", -150)
+        .attr("y", -45)
+        .attr("transform", "rotate(-90)")
+        .attr("text-anchor", "middle")
+        .style("font-size", "14px")
+        .text("# of Enrolled Students");
 
 });
