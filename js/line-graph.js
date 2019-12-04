@@ -124,7 +124,10 @@ function dataHandler(error, data2, degreeData) {
       // http://jsfiddle.net/pnavarrc/4fgv4/2
       // sample code for changes in line thickness on hover
       .on('mouseover', function(d){
-          label.text(d.key);
+          label.text(d.key)
+              .attr("x", 300)
+              .attr("y", 225)
+              .style("fill", colorscale(d.key));
           d3.select(this)
               .transition()
               .duration(100)
@@ -136,8 +139,12 @@ function dataHandler(error, data2, degreeData) {
               .transition()
               .duration(300)
               .style('stroke-width', d.w);
-          console.log("NO");
-  });
+       })
+      .on("mouseenter", entered);
+
+    function entered() {
+        path.style("mix-blend-mode", null).attr("stroke", "#ddd");
+    }
 
 
   myVis.append("text")
