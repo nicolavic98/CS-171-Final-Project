@@ -114,23 +114,29 @@ function dataHandler(error, data2, degreeData) {
       return colorscale(d.key)
     })
       .on("mouseover", handleMouseOver);
+      // .on("mouseout", handleMouseOut);
 
   // line label
-  drawnLine.append("text")
-    .attr("class", "label")
-    .attr("x", function(d) {
-        return width_line;
-    })
-    .attr("y", function(d) {
-      return y(d.values[17].value);
-    })
-    .attr("dy", ".35em")
-    .style("stroke", function(d) {
-      return colorscale(d.key)
-    })
-    .text(function(d) {
-      return d.key;
-    });
+  function handleMouseOver() {
+      drawnLine.append("text")
+          .attr("class", "label")
+          .attr("x", function (d) {
+              return width_line;
+          })
+          .attr("y", function (d) {
+              return y(d.values[17].value);
+          })
+          .attr("dy", ".35em")
+          .style("stroke", function (d) {
+              return colorscale(d.key)
+          })
+          .text(function (d) {
+              return d.key;
+          });
+  }
+  // function handleMouseOut() {
+  //     drawnLine.remove(".label");
+  // }
 
   myVis.append("text")
     .attr("class", "axislabel")
@@ -156,17 +162,17 @@ function dataHandler(error, data2, degreeData) {
         .style("text-anchor", "end")
         .text("What Students Have Studied Over Time");
 
-  function handleMouseOver(d, i) {
-
-    // Specify where to put label of text
-    myVis.append("text")
-        .attr({
-            x: function() { return x(d.values[17].value); },
-            y: function() { return y(d.values[17].value); }
-        })
-        .text(function() {
-          return d.key;  // Value of the text
-        });
-  }
+  // function handleMouseOver(d, i) {
+  //
+  //   // Specify where to put label of text
+  //   myVis.append("text")
+  //       .attr({
+  //           x: function() { return x(d.values[17].value); },
+  //           y: function() { return y(d.values[17].value); }
+  //       })
+  //       .text(function() {
+  //         return d.key;  // Value of the text
+  //       });
+  // }
 
 }
