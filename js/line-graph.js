@@ -113,7 +113,7 @@ function dataHandler(error, data2, degreeData) {
     .style("stroke", function(d) {
       return colorscale(d.key)
     })
-      .on("mouseover", handleMouseOver);
+    .on("mouseover", handleMouseOver);
       // .on("mouseout", handleMouseOut);
 
   // line label
