@@ -42,14 +42,16 @@
     margin-left: 15px;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Tangerine&display=swap');
+
 .axis {
-    font-family: Gabriola;
-    font-size: 15px;
+    font-family: Tangerine;
+    font-size: 12px;
 }
 
 .label {
-    font-family: Gabriola;
-    font-size: 15px;
+    font-family: Tangerine;
+    font-size: 12px;
 }
 
 .axislabel {
