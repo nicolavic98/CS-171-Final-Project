@@ -113,6 +113,7 @@ function dataHandler(error, data2, degreeData) {
     .style("stroke", function(d) {
       return colorscale(d.key)
     })
+
     // hover effects
       .on('mouseover', function(d){
           console.log("YES");
@@ -138,6 +139,10 @@ function dataHandler(error, data2, degreeData) {
   });
       // .on("mouseover", handleMouseOver);
       // // .on("mouseout", handleMouseOut);
+
+    // .on("mouseover", handleMouseOver);
+    //   // .on("mouseout", handleMouseOut);
+
 
   // line label
   // function handleMouseOver() {
