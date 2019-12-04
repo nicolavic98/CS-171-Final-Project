@@ -1,7 +1,7 @@
 // SVG Area
 var margin_line = {
     top: 30,
-    right: 300,
+    right: 80,
     bottom: 100,
     left: 80
   },
@@ -101,6 +101,11 @@ function dataHandler(error, data2, degreeData) {
       return y(d.value);
     });
 
+
+    var label = myVis.append("text")
+        .attr("x", 50)
+        .attr("y", 500);
+
   // Draw the lines
   var drawnLine = myVis.selectAll(".line")
     .data(dataNest)
@@ -109,62 +114,38 @@ function dataHandler(error, data2, degreeData) {
     .attr("class", "lines");
   drawnLine.append("path")
     .attr("class", "line")
+      .attr("stroke-linejoin", "round")
+      .attr("stroke-linecap", "round")
     .attr("d", d => line(d.values))
     .style("stroke", function(d) {
       return colorscale(d.key)
     })
-
     // hover effects
+      // http://jsfiddle.net/pnavarrc/4fgv4/2
+      // sample code for changes in line thickness on hover
       .on('mouseover', function(d){
-          console.log("YES");
-          drawnLine.append("text")
-              .attr("class", "label")
-              .attr("x", function (d) {
-                  return width_line;
-              })
-              .attr("y", function (d) {
-                  return y(d.values[17].value);
-              })
-              .attr("dy", ".35em")
-              .style("stroke", function (d) {
-                  return colorscale(d.key)
-              })
-              .text(function (d) {
-                  return d.key;
-              });
+          label.text(d.key)
+              .attr("x", 300)
+              .attr("y", 225)
+              .style("fill", colorscale(d.key));
+          d3.select(this)
+              .transition()
+              .duration(100)
+              .style('stroke-width', 4);
       })
       .on('mouseout', function(d){
           drawnLine.selectAll("text").remove();
-          console.log("NO");
-  });
-      // .on("mouseover", handleMouseOver);
-      // // .on("mouseout", handleMouseOut);
+          d3.select(this)
+              .transition()
+              .duration(300)
+              .style('stroke-width', d.w);
+       })
+      .on("mouseenter", entered);
 
-    // .on("mouseover", handleMouseOver);
-    //   // .on("mouseout", handleMouseOut);
+    function entered() {
+        path.style("mix-blend-mode", null).attr("stroke", "#ddd");
+    }
 
-
-  // line label
-  // function handleMouseOver() {
-  //     drawnLine.append("text")
-  //         .attr("class", "label")
-  //         .attr("x", function (d) {
-  //             return width_line;
-  //         })
-  //         .attr("y", function (d) {
-  //             return y(d.values[17].value);
-  //         })
-  //         .attr("dy", ".35em")
-  //         .style("stroke", function (d) {
-  //             return colorscale(d.key)
-  //         })
-  //         .text(function (d) {
-  //             return d.key;
-  //         });
-  // }
-  // function handleMouseOut() {
-  //     drawnLine.remove(".label");
-  // }
 
   myVis.append("text")
     .attr("class", "axislabel")
@@ -189,18 +170,5 @@ function dataHandler(error, data2, degreeData) {
         .attr("dy", ".1em")
         .style("text-anchor", "end")
         .text("What Students Have Studied Over Time");
-
-  // function handleMouseOver(d, i) {
-  //
-  //   // Specify where to put label of text
-  //   myVis.append("text")
-  //       .attr({
-  //           x: function() { return x(d.values[17].value); },
-  //           y: function() { return y(d.values[17].value); }
-  //       })
-  //       .text(function() {
-  //         return d.key;  // Value of the text
-  //       });
-  // }
 
 }
