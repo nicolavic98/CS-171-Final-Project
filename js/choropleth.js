@@ -32,32 +32,25 @@ queue()
     .await(function(error, mapTopJson, enrollmentCsv) {
 
         enrollmentCsv.forEach(function(d) {
-            // d.1970 = +d.1970;
-            // d.1980 = +d.1980;
-            // d.1990 = +d.1990;
-            // d.2000 = +d.2000;
-            // d.2010 = +d.2010;
-            // d.2012 = +d.2012;
-            // d.2014 = +d.2014;
-            // d.2015 = +d.2015;
-            // d.2016 = +d.2016;
-            // d.2017 = +d.2017;
+            d.yr1970 = +d.yr1970;
+            d.yr1980 = +d.yr1980;
+            d.yr1990 = +d.yr1990;
+            d.yr2000 = +d.yr2000;
+            d.yr2010 = +d.yr2010;
+            d.yr2012 = +d.yr2012;
+            d.yr2014 = +d.yr2014;
+            d.yr2015 = +d.yr2015;
+            d.yr2016 = +d.yr2016;
+            d.yr2017 = +d.yr2017;
         });
 
-
-//         var rollup = d3.nest()
-//             .key(function(d) {
-//                 return d.Code;
-//             })
-//             .entries(malariaDataCsv);
-//
-//
         data1 = mapTopJson;
         data2 = enrollmentCsv;
-//         newdata2 = rollup;
-//         var africa = topojson.feature(data1, data1.objects.collection).features;
-//
-//
+        console.log(data1);
+        console.log(data2);
+
+        var usamap = topojson.feature(data1, data1.objects.states).features
+
 //         for (var i = 0; i < data2.length; i++) {
 //             //Grab state name
 //             var dataState = newdata2[i].values[0].Code;
@@ -67,14 +60,14 @@ queue()
 //             var dataValue3 = parseFloat(newdata2[i].values[0].At_high_risk);
 //             var dataValue4 = parseFloat(newdata2[i].values[0].Suspected_malaria_cases);
 //             var dataValue5 = parseFloat(newdata2[i].values[0].Malaria_cases);
-//             for (var j = 0; j < africa.length; j++) {
-//                 var jsonState = africa[j].properties.adm0_a3;
+//             for (var j = 0; j < usamap.length; j++) {
+//                 var jsonState = usamap[j].properties.adm0_a3;
 //                 if (dataState === jsonState) {
-//                     africa[j].properties.UN_population = dataValue;
-//                     africa[j].properties.At_risk = dataValue2;
-//                     africa[j].properties.At_high_risk = dataValue3;
-//                     africa[j].properties.Suspected_malaria_cases = dataValue4;
-//                     africa[j].properties.Malaria_cases = dataValue5;
+//                     usamap[j].properties.UN_population = dataValue;
+//                     usamap[j].properties.At_risk = dataValue2;
+//                     usamap[j].properties.At_high_risk = dataValue3;
+//                     usamap[j].properties.Suspected_malaria_cases = dataValue4;
+//                     usamap[j].properties.Malaria_cases = dataValue5;
 //                     break;
 //                 }
 //             }
@@ -87,7 +80,7 @@ queue()
 // function updateChoropleth() { //this serves as the "enter" part; update to follow
 //
 //     //conversion to geojson
-//     var africa = topojson.feature(data1, data1.objects.collection).features;
+//     var usamap = topojson.feature(data1, data1.objects.collection).features;
 //
 //     color2.domain([
 //         0,
@@ -98,7 +91,7 @@ queue()
 //
 //
 //     choropleth.selectAll("path")
-//         .data(africa)
+//         .data(usamap)
 //         .enter()
 //         .append("path")
 //         .attr("class", "maps")
@@ -262,17 +255,17 @@ queue()
 //
 // // here comes the update
 // d3.select("#selected").on("change", function(d) {
-//     var africa = topojson.feature(data1, data1.objects.collection).features;
+//     var usamap = topojson.feature(data1, data1.objects.collection).features;
 //     selection = d3.select(this).property("value");
 //     // var selection = d3.select("#selected").property("value");
 //     color2.domain([
 //         0,
-//         d3.max(africa, function(d) {
+//         d3.max(usamap, function(d) {
 //             return d.properties[selection];
 //         })
 //     ]);
 //     choropleth.selectAll(".maps")
-//         .data(africa)
+//         .data(usamap)
 //         // .transition()
 //         // .duration(500)
 //         .style("fill", function(d) {
@@ -294,7 +287,7 @@ queue()
 //     choropleth.append("text")
 //         .attr("x", 200)
 //         .attr("y", 160)
-//         .text(Math.floor((1 / 8) * (d3.max(africa, function(d) {
+//         .text(Math.floor((1 / 8) * (d3.max(usamap, function(d) {
 //             return d.properties[selection];
 //         }))))
 //         .attr("class", "legend-label")
@@ -302,7 +295,7 @@ queue()
 //     choropleth.append("text")
 //         .attr("x", 200)
 //         .attr("y", 190)
-//         .text(Math.floor((2 / 8) * (d3.max(africa, function(d) {
+//         .text(Math.floor((2 / 8) * (d3.max(usamap, function(d) {
 //             return d.properties[selection];
 //         }))))
 //         .attr("class", "legend-label")
@@ -310,7 +303,7 @@ queue()
 //     choropleth.append("text")
 //         .attr("x", 200)
 //         .attr("y", 220)
-//         .text(Math.floor((3 / 8) * (d3.max(africa, function(d) {
+//         .text(Math.floor((3 / 8) * (d3.max(usamap, function(d) {
 //             return d.properties[selection];
 //         }))))
 //         .attr("class", "legend-label")
@@ -318,7 +311,7 @@ queue()
 //     choropleth.append("text")
 //         .attr("x", 200)
 //         .attr("y", 250)
-//         .text(Math.floor((4 / 8) * (d3.max(africa, function(d) {
+//         .text(Math.floor((4 / 8) * (d3.max(usamap, function(d) {
 //             return d.properties[selection];
 //         }))))
 //         .attr("class", "legend-label")
@@ -326,7 +319,7 @@ queue()
 //     choropleth.append("text")
 //         .attr("x", 200)
 //         .attr("y", 280)
-//         .text(Math.floor((5 / 8) * (d3.max(africa, function(d) {
+//         .text(Math.floor((5 / 8) * (d3.max(usamap, function(d) {
 //             return d.properties[selection];
 //         }))))
 //         .attr("class", "legend-label")
@@ -334,7 +327,7 @@ queue()
 //     choropleth.append("text")
 //         .attr("x", 200)
 //         .attr("y", 310)
-//         .text(Math.floor((6 / 8) * (d3.max(africa, function(d) {
+//         .text(Math.floor((6 / 8) * (d3.max(usamap, function(d) {
 //             return d.properties[selection];
 //         }))))
 //         .attr("class", "legend-label")
@@ -342,7 +335,7 @@ queue()
 //     choropleth.append("text")
 //         .attr("x", 200)
 //         .attr("y", 340)
-//         .text(Math.floor((6 / 8) * (d3.max(africa, function(d) {
+//         .text(Math.floor((6 / 8) * (d3.max(usamap, function(d) {
 //             return d.properties[selection];
 //         }))) + " and up")
 //         .attr("class", "legend-label")
