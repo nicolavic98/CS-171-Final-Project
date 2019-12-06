@@ -49,7 +49,12 @@ queue()
         console.log(data1);
         console.log(data2);
 
+        // Convert the TopoJson to GeoJSON (target object = 'states')
         var usamap = topojson.feature(data1, data1.objects.states).features
+        console.log(data1);
+        console.log(usamap);
+
+        // var usamap = topojson.feature(data1, data1.objects.states).features
 
 //         for (var i = 0; i < data2.length; i++) {
 //             //Grab state name
@@ -73,14 +78,16 @@ queue()
 //             }
 //         }
 //
-        updateChoropleth(error, mapTopJson, enrollmentCsv);
-    });
+//         updateChoropleth(error, mapTopJson, enrollmentCsv);
+        updateChoropleth();
+    // });
 //
 //
 function updateChoropleth() { //this serves as the "enter" part; update to follow
 //
     //conversion to geojson
-    var usamap = topojson.feature(data1, data1.objects.collection).features;
+    // var usamap = topojson.feature(data1, data1.objects.collection).features;
+    // var usamap = topojson.feature(data1, data1.objects.state).features;
 //
 //     color2.domain([
 //         0,
@@ -90,6 +97,9 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
 //     ]);
 //
 //
+    choropleth.selectAll("path")
+        .remove();
+
     choropleth.selectAll("path")
         .data(usamap)
         .enter()
@@ -148,3 +158,4 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
 //             }
 //         });
 // });
+    });
