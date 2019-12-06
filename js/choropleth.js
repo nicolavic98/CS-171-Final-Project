@@ -1,18 +1,18 @@
 // --> CREATE SVG DRAWING AREA
-var width_map = 1000,
-    height_map = 600;
+var width_map = 800,
+    height_map = 400;
 
 var choropleth = d3.select("#choropleth").append("svg")
-    .attr("width", width)
-    .attr("height", height);
+    .attr("width", width_map)
+    .attr("height", height_map);
 
 //map initializing
 var projection = d3.geoMercator()
-    .translate([width / 2, height / 2])
-    .scale([350])
-    .center([-5, 0]);
-var path = d3.geoPath()
-    .projection(projection);
+    // .translate([width / 2, height / 2])
+    .scale([20])
+    .center([0, 0]);
+var path = d3.geoPath();
+    // .projection(projection);
 
 // // color scale for map
 // var color2 = d3.scaleQuantize()
@@ -50,11 +50,9 @@ queue()
         console.log(data2);
 
         // Convert the TopoJson to GeoJSON (target object = 'states')
-        var usamap = topojson.feature(data1, data1.objects.states).features
+        var usamap = topojson.feature(data1, data1.objects.states).features;
         console.log(data1);
         console.log(usamap);
-
-        // var usamap = topojson.feature(data1, data1.objects.states).features
 
 //         for (var i = 0; i < data2.length; i++) {
 //             //Grab state name
