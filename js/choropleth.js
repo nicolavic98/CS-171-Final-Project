@@ -1,16 +1,25 @@
 // --> CREATE SVG DRAWING AREA
-var width_map = 800,
-    height_map = 400;
+var width_map = 1000,
+    height_map = 700;
 
 var choropleth = d3.select("#choropleth").append("svg")
     .attr("width", width_map)
     .attr("height", height_map);
 
-//map initializing
-var projection = d3.geoMercator()
-    // .translate([width / 2, height / 2])
-    .scale([20])
-    .center([0, 0]);
+// //map initializing
+// var projection = d3.geoMercator()
+//     // .translate([width / 2, height / 2])
+//     .scale([20])
+//     .center([0, 0]);
+// var path = d3.geoPath();
+//     // .projection(projection);
+
+// define map projection
+var projection = d3.geoAlbersUsa().scale(1300).translate([487.5, 305]);
+    // .translate([width_map/2, height_map/2])
+    // .scale([500]);
+
+//Define default path generator
 var path = d3.geoPath();
     // .projection(projection);
 
@@ -102,8 +111,11 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
         .data(usamap)
         .enter()
         .append("path")
+        // .datum(topojson.mesh(data1, data1.objects.states))
         .attr("class", "maps")
-        .attr("d", path);
+        .attr("d", path)
+        .style("fill", "none")
+        .style("stroke", "black");
 //         .on("mouseover", function(d) {
 //             tooltip.transition()
 //                 .duration(200)
