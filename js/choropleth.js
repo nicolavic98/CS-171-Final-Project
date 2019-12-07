@@ -171,7 +171,16 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
         .append("path")
         // .datum(topojson.mesh(data1, data1.objects.states))
         .attr("class", "maps")
-        .attr("d", path);
+        .attr("d", path).style("fill", function (d) {
+            var value = d.properties[selectedMap];
+            console.log(d.properties);
+            console.log(selectedMap);
+            if(value) {
+                return color(value);
+            } else {
+                return "#ccc";
+            }
+    });
         // .style("fill", "none")
         // .style("stroke", "black");
 
