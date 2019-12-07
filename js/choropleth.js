@@ -7,12 +7,12 @@ var choropleth = d3.select("#choropleth").append("svg")
     .attr("height", height_map);
 
 //map initializing
-var projection = d3.geoMercator()
-    // .translate([width / 2, height / 2])
+var projection = d3.geoAlbersUsa()
+    .translate([width / 2, height / 2])
     .scale([20])
     .center([0, 0]);
+
 var path = d3.geoPath();
-    // .projection(projection);
 
 // // color scale for map
 // var color2 = d3.scaleQuantize()
