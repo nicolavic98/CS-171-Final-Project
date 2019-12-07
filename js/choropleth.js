@@ -120,8 +120,10 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
             "rgb(239,101,72)", "rgb(215,48,31)","rgb(179,0,0)", "rgb(127,0,0)"]);
 
     color.domain([
-        d3.min(usamap, function(d) { return d[selectedMap]; }),
-        d3.max(usamap, function(d) { return d[selectedMap]; })
+        d3.min(usamap, function(d) {
+            console.log(usamap[3].properties[selectedMap])
+            return usamap[3].properties[selectedMap]; }),
+        d3.max(usamap, function(d) { return usamap[3].properties[selectedMap]; })
     ]);
     console.log(usamap[3].properties[selectedMap]);
 
