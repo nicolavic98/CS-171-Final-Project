@@ -7,12 +7,17 @@ var choropleth = d3.select("#choropleth").append("svg")
     .attr("height", height_map);
 
 // //map initializing
-var projection = d3.geoMercator()
-    // .translate([width / 2, height / 2])
-    .scale([20])
-    .center([0, 0]);
-var path = d3.geoPath();
-    // .projection(projection);
+// var projection = d3.geoMercator()
+//     .translate([width / 2, height / 2]);
+//     // .scale([20])
+//     // .center([0, 0]);
+
+var projection = d3.geoIdentity();
+    // .fitExtent([[50,50],[600-50,300-50]], featureCollection);
+    // .fitSize([width_map,height_map],usamap);
+
+var path = d3.geoPath()
+    .projection(projection);
 
 // define map projection
 // var projection = d3.geoAlbersUsa().scale(1300).translate([487.5, 305]);
@@ -119,9 +124,14 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
         .append("path")
         // .datum(topojson.mesh(data1, data1.objects.states))
         .attr("class", "maps")
-        .attr("d", path)
-        .style("fill", "none")
-        .style("stroke", "black");
+        .attr("d", path);
+        // .style("fill", "none")
+        // .style("stroke", "black");
+
+    // choropleth.append("path")
+    //     .datum(topojson.mesh(data1, data1.objects.states))
+    //     .attr("d", path)
+    //     .attr("class", "maps");
 //         .on("mouseover", function(d) {
 //             tooltip.transition()
 //                 .duration(200)
