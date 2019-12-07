@@ -192,6 +192,10 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
                 return "#ccc";
             }
     });
+
+
+
+
         // .style("fill", "none")
         // .style("stroke", "black");
         // .attr("d", path)
@@ -234,6 +238,18 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
 //                 return color2(d.properties.UN_population);
 //             }
 //         });
+    choropleth.append("g")
+        .attr("class", "legendQuant")
+        .attr("transform", "translate(360,100)");
+
+    var legend = d3.legendColor()
+        .labelFormat(d3.format(".2f"))
+        .scale(color);
+
+    choropleth.select(".legendQuant")
+        .call(legend);
+
+
 }
 // var selection;
 //
