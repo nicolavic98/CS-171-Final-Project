@@ -39,10 +39,10 @@ var choropleth = d3.select("#choropleth").append("svg")
 // var color2 = d3.scaleQuantize()
 //     .range(["rgb(255,255,255)", "rgb(255,204,204)", "rgb(255,102,102)", "rgb(255,51,51)", "rgb(255,0,0)", "rgb(204,0,0)", "rgb(153,0,0)", "rgb(77,0,0)"]);
 //
-// //tooltip help from https://bl.ocks.org/tiffylou/88f58da4599c9b95232f5c89a6321992
-// var tooltip = d3.select("body").append("div")
-//     .attr("class", "tooltip")
-//     .style("opacity", 0);
+//tooltip help from https://bl.ocks.org/tiffylou/88f58da4599c9b95232f5c89a6321992
+var tooltip = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
 //
 //
 var data1, data2;
