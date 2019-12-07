@@ -3,8 +3,8 @@
 
 var margin = {top: 40, right: 10, bottom: 90, left: 60};
 
-var width = 385 - margin.left - margin.right,
-    height = 410 - margin.top - margin.bottom;
+var width = 485 - margin.left - margin.right,
+    height = 510 - margin.top - margin.bottom;
 
 //https://bl.ocks.org/d3noob/5987480
 // help getting two graphs in one svg
@@ -131,7 +131,7 @@ d3.csv("data/data2.csv", function(error, csv) {
     ///axis labels
     chart1.append("text")
         .attr("x", (160))
-        .attr("y", 360)
+        .attr("y", 460)
         .attr("text-anchor", "middle")
         .style("font-size", "14px")
         .text("Ethnicity");
@@ -240,7 +240,7 @@ function updateVis(myKey){
     //axis labels
     chart2.append("text")
         .attr("x", (160))
-        .attr("y", 360)
+        .attr("y", 460)
         .attr("text-anchor", "middle")
         .style("font-size", "14px")
         .text("Ethnicity");
