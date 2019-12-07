@@ -114,7 +114,7 @@ queue()
                 }
             }
         }
-        // console.log(usamap);
+        console.log(usamap);
 
         // Event Listener (select-box)
         var selectMapType = d3.select("#selected-map").on("change", updateChoropleth);
@@ -151,6 +151,7 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
         d3.min(usamap, function(d) { return d[selectedMap]; }),
         d3.max(usamap, function(d) { return d[selectedMap]; })
     ]);
+    console.log(usamap[3].properties[selectedMap]);
 
 
 
