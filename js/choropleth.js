@@ -173,9 +173,9 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
     });
         // .style("fill", "none")
         // .style("stroke", "black");
-        .attr("d", path)
-        .style("fill", "none")
-        .style("stroke", "black")
+        // .attr("d", path)
+        // .style("fill", "none")
+        // .style("stroke", "black")
         // .on("mouseover", function(d) {
         //     tooltip.transition()
         //         .duration(200)
