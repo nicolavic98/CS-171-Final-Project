@@ -82,7 +82,7 @@ queue()
 
         var path = d3.geoPath()
             .projection(projection);
-        
+
         for (var i = 0; i < data2.length; i++) {
             //Grab state name
             var dataState = data2[i].State;
