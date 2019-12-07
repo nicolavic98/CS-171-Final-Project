@@ -11,19 +11,15 @@ var choropleth = d3.select("#choropleth").append("svg")
     .attr("height", height_map);
 
 var projection = d3.geoIdentity();
-// .translate([width_map / 2, height_map / 2]);
-// .fitExtent([[50,50],[600-50,300-50]], featureCollection);
-// .fitSize([width_map,height_map],usamap);
 
 var path = d3.geoPath()
     .projection(projection);
 
-// //tooltip help from https://bl.ocks.org/tiffylou/88f58da4599c9b95232f5c89a6321992
-// var tooltip = d3.select("body").append("div")
-//     .attr("class", "tooltip")
-//     .style("opacity", 0);
-//
-//
+var tooltip = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+
 var data1, data2;
 // Use the Queue.js library to read two files
 queue()
@@ -91,8 +87,6 @@ queue()
         // Event Listener (select-box)
         var selectMapType = d3.select("#selected-map").on("change", updateChoropleth);
 
-//
-//         updateChoropleth(error, mapTopJson, enrollmentCsv);
         updateChoropleth();
     // });
 //
@@ -103,17 +97,6 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
     var selectedMap = selectMapType.property("value");
     console.log(selectedMap);
 
-    // //conversion to geojson
-    // var usamap = topojson.feature(data1, data1.objects.state).features;
-//
-//     color2.domain([
-//         0,
-//         d3.max(data2, function(d) {
-//             return d.UN_population;
-//         })
-//     ]);
-//
-//
     var color = d3.scaleQuantize()
         .range(["rgb(255,247,236)", "rgb(254,232,200)",
             "rgb(253,212,158)", "rgb(253,187,132)", "rgb(252,141,89)",
@@ -149,53 +132,15 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
             } else {
                 return "#ccc";
             }
+    })
+    .on("mouseover", function(d) {
+        tooltip.transition()
+            .duration(200)
+            .style("opacity", .9);
+        tooltip.html("Hi")
     });
 
 
-
-
-        // .style("fill", "none")
-        // .style("stroke", "black");
-        // .attr("d", path)
-        // .style("fill", "none")
-        // .style("stroke", "black")
-        // .on("mouseover", function(d) {
-        //     tooltip.transition()
-        //         .duration(200)
-        //         .style("opacity", .9);
-        //     tooltip.html("Hi")
-        // });
-
-    // choropleth.append("path")
-    //     .datum(topojson.mesh(data1, data1.objects.states))
-    //     .attr("d", path)
-    //     .attr("class", "maps");
-//         .on("mouseover", function(d) {
-//             tooltip.transition()
-//                 .duration(200)
-//                 .style("opacity", .9);
-//             tooltip.html(d.properties.name + "<br>" + "Population: " + d.properties.UN_population )
-//
-//
-//                 .style("left", (d3.event.pageX) + "px")
-//                 .style("top", (d3.event.pageY - 5) + "px");
-//         })
-//         .on("mouseout", function(d) {
-//             tooltip.transition()
-//                 .duration(500)
-//                 .style("opacity", 0);
-//         })
-//         .attr("stroke", "#4d0000")
-//         .attr("stroke-width", .25)
-//         .transition()
-//         .duration(500)
-//         .style("fill", function(d) {
-//             if (!(d.properties.UN_population)) {
-//                 return "#999393"
-//             } else {
-//                 return color2(d.properties.UN_population);
-//             }
-//         });
     choropleth.append("g")
         .attr("class", "legendQuant")
         .attr("transform", "translate(1000,200)");
@@ -209,29 +154,5 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
 
 
 }
-// var selection;
-//
-// // here comes the update
-// d3.select("#selected").on("change", function(d) {
-//     var usamap = topojson.feature(data1, data1.objects.collection).features;
-//     selection = d3.select(this).property("value");
-//     // var selection = d3.select("#selected").property("value");
-//     color2.domain([
-//         0,
-//         d3.max(usamap, function(d) {
-//             return d.properties[selection];
-//         })
-//     ]);
-//     choropleth.selectAll(".maps")
-//         .data(usamap)
-//         // .transition()
-//         // .duration(500)
-//         .style("fill", function(d) {
-//             if (!(d.properties[selection])) {
-//                 return "#999393"
-//             } else {
-//                 return color2(d.properties[selection]);
-//             }
-//         });
-// });
+
     });
