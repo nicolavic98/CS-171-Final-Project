@@ -151,7 +151,7 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
         d3.min(usamap, function(d) { return d[selectedMap]; }),
         d3.max(usamap, function(d) { return d[selectedMap]; })
     ]);
-    console.log(usamap[3][selectedMap]);
+
 
 
 
