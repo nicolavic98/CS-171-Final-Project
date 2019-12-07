@@ -67,13 +67,13 @@ queue()
 
         data1 = mapTopJson;
         data2 = enrollmentCsv;
-        console.log(data1);
-        console.log(data2);
+        // console.log(data1);
+        // console.log(data2);
 
         // Convert the TopoJson to GeoJSON (target object = 'states')
         var usamap = topojson.feature(data1, data1.objects.states).features;
-        console.log(data1);
-        console.log(usamap);
+        // console.log(data1);
+        // console.log(usamap);
 
         var projection = d3.geoIdentity();
         // .translate([width_map / 2, height_map / 2]);
@@ -104,6 +104,38 @@ queue()
 //                 }
 //             }
 //         }
+        for (var i = 0; i < data2.length; i++) {
+            //Grab state name
+            var dataState = data2[i].State;
+            //Grab data value, and convert from string to float
+            var dataValue = parseFloat(data2[i].yr1970);
+            var dataValue2 = parseFloat(data2[i].yr1980);
+            var dataValue3 = parseFloat(data2[i].yr1990);
+            var dataValue4 = parseFloat(data2[i].yr2000);
+            var dataValue5 = parseFloat(data2[i].yr2010);
+            var dataValue6 = parseFloat(data2[i].yr2012);
+            var dataValue7 = parseFloat(data2[i].yr2014);
+            var dataValue8 = parseFloat(data2[i].yr2015);
+            var dataValue9 = parseFloat(data2[i].yr2016);
+            var dataValue10 = parseFloat(data2[i].yr2017);
+            for (var j = 0; j < usamap.length; j++) {
+                var jsonState = usamap[j].properties.name;
+                if (dataState === jsonState) {
+                    usamap[j].properties.yr1970 = dataValue;
+                    usamap[j].properties.yr1980 = dataValue2;
+                    usamap[j].properties.yr1990 = dataValue3;
+                    usamap[j].properties.yr2000 = dataValue4;
+                    usamap[j].properties.yr2010 = dataValue5;
+                    usamap[j].properties.yr2012 = dataValue6;
+                    usamap[j].properties.yr2014 = dataValue7;
+                    usamap[j].properties.yr2015 = dataValue8;
+                    usamap[j].properties.yr2016 = dataValue9;
+                    usamap[j].properties.yr2017 = dataValue10;
+                    break;
+                }
+            }
+        }
+        console.log(usamap);
 //
 //         updateChoropleth(error, mapTopJson, enrollmentCsv);
         updateChoropleth();
@@ -113,8 +145,7 @@ queue()
 function updateChoropleth() { //this serves as the "enter" part; update to follow
 //
     //conversion to geojson
-    // var usamap = topojson.feature(data1, data1.objects.collection).features;
-    // var usamap = topojson.feature(data1, data1.objects.state).features;
+    var usamap = topojson.feature(data1, data1.objects.state).features;
 //
 //     color2.domain([
 //         0,
