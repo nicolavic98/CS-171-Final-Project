@@ -101,7 +101,7 @@ function pieChart(d3) {
             return arr[j][i];
         };
 
-        var arr1 = ["#401412","#800F00", "#D13D2A", "grey"];
+        var arr1 = ["#401412","#800F00", "#D13D2A", "#FFF5F5"];
 
         var pie = d3.layout.pie()
             .sort(null);
@@ -129,7 +129,7 @@ function pieChart(d3) {
                     arr1[index] = "black"
                 }
                 if (index == 1) {
-                    arr1[index] = "white"
+                    arr1[index] = "#FFF5F5"
                 }
                 return currentcolor
 
@@ -139,47 +139,91 @@ function pieChart(d3) {
         // console.log("herenow?")
 
         svg.append("text")
-            .attr('x', -100)
-            .attr('y', -40)
+            .attr("class", "text-heading")
+            .attr('x', -20)
+            .attr('y', -220)
+            .text("2017");
+
+        var svgnew = d3.select(".volunteers_area").append("svg")
+            .attr("class", "textsvg")
+            .attr("width", "220")
+            .attr("height", "500")
+            .append("g")
+            .attr("transform", "translate(" + width_fin / 2 + "," + height_fin / 2 + ")");
+
+        svgnew.append("text")
+            .attr("class", "text-heading")
+            .attr('x', -230)
+            .attr('y', -90)
+            .text("Present Day Statistics:");
+
+        svgnew.append("text")
+            .attr('x', -230)
+            .attr('y', -50)
             .text("Tuition & Fees: $" + dataset.collegecost[0]);
 
-        svg.append("text")
-            .attr('x', -70)
+        svgnew.append("text")
+            .attr('x', -200)
             .attr('y', -20)
             .text("Room: $" + dataset.collegecost[1]);
 
-        svg.append("text")
-            .attr('x', -70)
-            .attr('y', 0)
+        svgnew.append("text")
+            .attr('x', -200)
+            .attr('y', 10)
             .text("Board: $" + dataset.collegecost[2]);
 
-        svg.append("text")
-            .attr('x', -80)
-            .attr('y', 20)
+        svgnew.append("text")
+            .attr('x', -205)
+            .attr('y', 40)
             .text("Financial Aid: " + Math.floor((dataset.finaid[0]) * 100) + "%")
 
-        svg.append("circle")
-            .attr("cx", -110)
-            .attr("cy", -44 )
+        svgnew.append("circle")
+            .attr('cx', -240)
+            .attr('cy', -55)
             .attr("r", 8 )
             .style("fill","#401412");
 
 
-        svg.append("circle")
-            .attr("cx", -80)
-            .attr("cy", -24 )
+        svgnew.append("circle")
+            .attr('cx', -210)
+            .attr('cy', -25)
             .attr("r", 8 )
             .style("fill","#800F00");
 
-        svg.append("circle")
-            .attr("cx", -80)
-            .attr("cy", -4 )
+        svgnew.append("circle")
+            .attr('cx', -210)
+            .attr('cy', 5)
             .attr("r", 8 )
             .style("fill","#D13D2A");
 
-        svg.append("circle")
-            .attr("cx", -90)
-            .attr("cy", 17 )
+        svgnew.append("circle")
+            .attr('cx', -215)
+            .attr('cy', 35)
+            .attr("r", 8 )
+            .style("fill","black");
+
+        svgnew.append("circle")
+            .attr('cx', -45)
+            .attr('cy', -55)
+            .attr("r", 8 )
+            .style("fill","#401412");
+
+
+        svgnew.append("circle")
+            .attr('cx', -72)
+            .attr('cy', -25)
+            .attr("r", 8 )
+            .style("fill","#800F00");
+
+        svgnew.append("circle")
+            .attr('cx', -74)
+            .attr('cy', 5)
+            .attr("r", 8 )
+            .style("fill","#D13D2A");
+
+        svgnew.append("circle")
+            .attr('cx', -67)
+            .attr('cy', 35)
             .attr("r", 8 )
             .style("fill","black");
 
@@ -218,6 +262,17 @@ function pieChart(d3) {
             });
 
 
+            console.log(mydata2[3].Year)
+            mydata2.forEach(function (d, index) {
+                if (d.Year == myKey) {
+                    console.log("here?")
+                    dataset2.finaid.push((d.AnyAllTotal) / (mydata1[myindex].TFRBAll)*(mydata1[myindex].BAll / totaltuition + mydata1[myindex].RAll / totaltuition + mydata1[myindex].TFAll / totaltuition));
+                    dataset2.finaid.push(1 - ((d.AnyAllTotal) / (mydata1[myindex].TFRBAll))*(mydata1[myindex].BAll / totaltuition + mydata1[myindex].RAll / totaltuition + mydata1[myindex].TFAll / totaltuition));
+                }
+            });
+
+
+
             console.log(dataset2)
 
             function tweenPie(finish, k) {
@@ -244,12 +299,13 @@ function pieChart(d3) {
                 return arr[j][i];
             };
 
-            var arr1 = ["#401412","#800F00", "#D13D2A", "white"];
+            var arr1 = ["#401412","#800F00", "#D13D2A", "#FFF5F5"];
 
             var pie = d3.layout.pie()
                 .sort(null);
 
             var arc = d3.svg.arc();
+
 
             var svg2 = d3.select(".volunteers_area").append("svg")
                 .attr("class", "secondsvg")
@@ -269,7 +325,12 @@ function pieChart(d3) {
                 .style("fill", function (d, index, index2) {
                     var currentcolor = arr1[index]
                     if (index == 1) {
-                        arr1[index] = "white"
+                        arr1[index] = "#FFF5F5"
+                    }
+                    if (index2==1){
+                        if(index==0){
+                            return "black"
+                        }
                     }
                     return currentcolor;
 
@@ -277,18 +338,29 @@ function pieChart(d3) {
                 .transition().duration(750)
                 .attrTween("d", tweenPie);
             svg2.append("text")
-                .attr("class", "newtext")
-                .attr('x', -160)
-                .attr('y', 15)
-                .text("In " + myKey + ", the average cost of attending college")
+                .attr("class", "text-heading2")
+                .attr('x', -25)
+                .attr('y', -210)
+                .text(myKey);
 
             svg2.append("text")
                 .attr("class", "newtext")
                 .attr('x', -150)
-                .attr('y', 35)
-                .text("was only " + Math.floor((dataset2.collegecost[0] + dataset2.collegecost[1] + dataset2.collegecost[2]) * 100) + "% what it is in present-day.")
+                .attr('y', -15)
+                .text("In " + myKey + ", the average cost of attending")
+
+            svg2.append("text")
+                .attr("class", "newtext")
+                .attr('x', -150)
+                .attr('y', 5)
+                .text("college was only " + Math.floor((dataset2.collegecost[0] + dataset2.collegecost[1] + dataset2.collegecost[2]) * 100) + "% what it is")
 
 
+            svg2.append("text")
+                .attr("class", "newtext")
+                .attr('x', -150)
+                .attr('y', 25)
+                .text("in present day.")
             // .text(;
 
 
