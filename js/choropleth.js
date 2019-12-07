@@ -153,22 +153,22 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
     ]);
     console.log(usamap[3].properties[selectedMap]);
 
-    for (var i =0; i < africa.length; i++) {
-        var africaCode = africa[i].Code;
+    for (var i =0; i < usamap.length; i++) {
+        var africaCode = usamap[i].Code;
 
-        var africaPop = africa[i][rankingType];
+        var africaPop = usamap[i][selectedMap];
 
-        for (var j=0; j < AfricaMap.length; j++) {
-            var mapCode = AfricaMap[j].properties.adm0_a3_is;
+        for (var j=0; j < usamap.length; j++) {
+            var mapCode = usamap[j].properties.adm0_a3_is;
 
             if (africaCode == mapCode) {
-                AfricaMap[j].properties[rankingType] = africaPop;
+                usamap[j].properties[selectedMap] = africaPop;
 
                 break;
             }
         }
     }
-    
+
 
 
 
