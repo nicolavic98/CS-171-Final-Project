@@ -138,6 +138,8 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
         .append("path")
         // .attr("class", "maps")
         .attr("d", path)
+        .attr("stroke", "#4d0000")
+        .attr("stroke-width", .25)
         .style("fill", function (d) {
             var value = d.properties[selectedMap];
             console.log(d.properties);
