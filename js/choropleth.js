@@ -12,12 +12,13 @@ var choropleth = d3.select("#choropleth").append("svg")
 //     // .scale([20])
 //     // .center([0, 0]);
 
-var projection = d3.geoIdentity();
-    // .fitExtent([[50,50],[600-50,300-50]], featureCollection);
-    // .fitSize([width_map,height_map],usamap);
-
-var path = d3.geoPath()
-    .projection(projection);
+// var projection = d3.geoIdentity();
+//     // .translate([width_map / 2, height_map / 2]);
+//     // .fitExtent([[50,50],[600-50,300-50]], featureCollection);
+//     // .fitSize([width_map,height_map],usamap);
+//
+// var path = d3.geoPath()
+//     .projection(projection);
 
 // define map projection
 // var projection = d3.geoAlbersUsa().scale(1300).translate([487.5, 305]);
@@ -73,6 +74,14 @@ queue()
         var usamap = topojson.feature(data1, data1.objects.states).features;
         console.log(data1);
         console.log(usamap);
+
+        var projection = d3.geoIdentity();
+        // .translate([width_map / 2, height_map / 2]);
+        // .fitExtent([[50,50],[600-50,300-50]], featureCollection);
+        // .fitSize([width_map,height_map],usamap);
+
+        var path = d3.geoPath()
+            .projection(projection);
 
 //         for (var i = 0; i < data2.length; i++) {
 //             //Grab state name
