@@ -115,6 +115,10 @@ queue()
             }
         }
         // console.log(usamap);
+
+        // Event Listener (select-box)
+        var selectMapType = d3.select("#selected-map").on("change", updateChoropleth);
+
 //
 //         updateChoropleth(error, mapTopJson, enrollmentCsv);
         updateChoropleth();
@@ -123,8 +127,12 @@ queue()
 //
 function updateChoropleth() { //this serves as the "enter" part; update to follow
 //
-    //conversion to geojson
-    var usamap = topojson.feature(data1, data1.objects.state).features;
+
+    var selectedMap = selectMapType.property("value");
+    console.log(selectedMap);
+
+    // //conversion to geojson
+    // var usamap = topojson.feature(data1, data1.objects.state).features;
 //
 //     color2.domain([
 //         0,
@@ -134,6 +142,25 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
 //     ]);
 //
 //
+    var color = d3.scaleQuantize()
+        .range(["rgb(255,247,236)", "rgb(254,232,200)",
+            "rgb(253,212,158)", "rgb(253,187,132)", "rgb(252,141,89)",
+            "rgb(239,101,72)", "rgb(215,48,31)","rgb(179,0,0)", "rgb(127,0,0)"]);
+
+    color.domain([
+        d3.min(usamap, function(d) { return d[selectedMap]; }),
+        d3.max(usamap, function(d) { return d[selectedMap]; })
+    ]);
+    console.log(usamap[3][selectedMap]);
+
+
+
+
+
+
+
+
+
     choropleth.selectAll("path")
         .remove();
 
