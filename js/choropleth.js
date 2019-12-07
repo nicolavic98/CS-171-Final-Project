@@ -82,28 +82,7 @@ queue()
 
         var path = d3.geoPath()
             .projection(projection);
-
-//         for (var i = 0; i < data2.length; i++) {
-//             //Grab state name
-//             var dataState = newdata2[i].values[0].Code;
-//             //Grab data value, and convert from string to float
-//             var dataValue = parseFloat(newdata2[i].values[0].UN_population);
-//             var dataValue2 = parseFloat(newdata2[i].values[0].At_risk);
-//             var dataValue3 = parseFloat(newdata2[i].values[0].At_high_risk);
-//             var dataValue4 = parseFloat(newdata2[i].values[0].Suspected_malaria_cases);
-//             var dataValue5 = parseFloat(newdata2[i].values[0].Malaria_cases);
-//             for (var j = 0; j < usamap.length; j++) {
-//                 var jsonState = usamap[j].properties.adm0_a3;
-//                 if (dataState === jsonState) {
-//                     usamap[j].properties.UN_population = dataValue;
-//                     usamap[j].properties.At_risk = dataValue2;
-//                     usamap[j].properties.At_high_risk = dataValue3;
-//                     usamap[j].properties.Suspected_malaria_cases = dataValue4;
-//                     usamap[j].properties.Malaria_cases = dataValue5;
-//                     break;
-//                 }
-//             }
-//         }
+        
         for (var i = 0; i < data2.length; i++) {
             //Grab state name
             var dataState = data2[i].State;
@@ -135,7 +114,7 @@ queue()
                 }
             }
         }
-        console.log(usamap);
+        // console.log(usamap);
 //
 //         updateChoropleth(error, mapTopJson, enrollmentCsv);
         updateChoropleth();
