@@ -153,15 +153,6 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
     ]);
     console.log(usamap[3].properties[selectedMap]);
 
-
-
-
-
-
-
-
-
-
     choropleth.selectAll("path")
         .remove();
 
@@ -169,11 +160,16 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
         .data(usamap)
         .enter()
         .append("path")
-        // .datum(topojson.mesh(data1, data1.objects.states))
         .attr("class", "maps")
-        .attr("d", path);
-        // .style("fill", "none")
-        // .style("stroke", "black");
+        .attr("d", path)
+        .style("fill", "none")
+        .style("stroke", "black")
+        // .on("mouseover", function(d) {
+        //     tooltip.transition()
+        //         .duration(200)
+        //         .style("opacity", .9);
+        //     tooltip.html("Hi")
+        // });
 
     // choropleth.append("path")
     //     .datum(topojson.mesh(data1, data1.objects.states))
@@ -183,7 +179,7 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
 //             tooltip.transition()
 //                 .duration(200)
 //                 .style("opacity", .9);
-//             tooltip.html(d.properties.name + "<br>" + "Population: " + d.properties.UN_population + "<br>" + "At Risk: " + d.properties.At_risk + "%" + "<br>" + "At High Risk: " + d.properties.At_high_risk + "%" + "<br>" + "Suspected Malaria Cases: " + d.properties.Suspected_malaria_cases + "<br>" + "Diagnosed Malaria Cases: " + d.properties.Malaria_cases + "<br>")
+//             tooltip.html(d.properties.name + "<br>" + "Population: " + d.properties.UN_population )
 //
 //
 //                 .style("left", (d3.event.pageX) + "px")
