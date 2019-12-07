@@ -68,8 +68,21 @@
     fill: maroon;
 }
 
-#chart-area {
+#barchart-area{
     margin: auto;
+    background: seagreen;
+    border-style                :   solid;
+    border-width                :   8px;
+    border-color                :   sandybrown;
+    padding: 5px;
+    font-family: "Chalkboard SE";
+    color: whitesmoke;
+}
+
+#barchart-area .y-axis .text{
+    font-family: "Chalkboard SE";
+    color: whitesmoke;
+
 }
 
 #line-graph {
