@@ -5,8 +5,8 @@ var margin_line = {
     bottom: 100,
     left: 80
   },
-  width_line = 1000 - margin_line.left - margin_line.right,
-  height_line = 575 - margin_line.top - margin_line.bottom;
+  width_line = 1200 - margin_line.left - margin_line.right,
+  height_line = 755 - margin_line.top - margin_line.bottom;
 
 var myVis = d3.select("#line-graph").append("svg")
   .attr("width", width_line + margin_line.left + margin_line.right)
@@ -126,8 +126,10 @@ function dataHandler(error, data2, degreeData) {
       // http://jsfiddle.net/pnavarrc/4fgv4/2
       // sample code for changes in line thickness on hover
       .on('mouseover', function(d){
-          label.text(d.key)
-              .attr("x", 300)
+          drawnLine.append("text")
+              .text(d.key)
+              .attr("class", "mousetext")
+              .attr("x", 400)
               .attr("y", 225)
               .style("fill", colorscale(d.key));
           d3.select(this)
@@ -137,7 +139,7 @@ function dataHandler(error, data2, degreeData) {
               .style('stroke-width', 4);
       })
       .on('mouseout', function(d){
-          drawnLine.selectAll("text").remove();
+          drawnLine.selectAll(".mousetext").remove();
           d3.select(this)
               .transition()
               .duration(100)
