@@ -6,39 +6,18 @@ var choropleth = d3.select("#choropleth").append("svg")
     .attr("width", width_map)
     .attr("height", height_map);
 
-// //map initializing
-// var projection = d3.geoMercator()
-//     .translate([width / 2, height / 2]);
-//     // .scale([20])
-//     // .center([0, 0]);
+var projection = d3.geoIdentity();
+// .translate([width_map / 2, height_map / 2]);
+// .fitExtent([[50,50],[600-50,300-50]], featureCollection);
+// .fitSize([width_map,height_map],usamap);
 
-// var projection = d3.geoIdentity();
-//     // .translate([width_map / 2, height_map / 2]);
-//     // .fitExtent([[50,50],[600-50,300-50]], featureCollection);
-//     // .fitSize([width_map,height_map],usamap);
-//
-// var path = d3.geoPath()
-//     .projection(projection);
+var path = d3.geoPath()
+    .projection(projection);
 
-// define map projection
-// var projection = d3.geoAlbersUsa().scale(1300).translate([487.5, 305]);
-    // .translate([width_map/2, height_map/2])
-    // .scale([500]);
-
-//Define default path generator
-//map initializing
-// var projection = d3.geoAlbersUsa()
-//     .translate([width / 2, height / 2])
-//     .scale([20]);
-//     // .center([0, 0]);
-
-// var path = d3.geoPath()
-//     .projection(projection);
-
-//tooltip help from https://bl.ocks.org/tiffylou/88f58da4599c9b95232f5c89a6321992
-var tooltip = d3.select("body").append("div")
-    .attr("class", "tooltip")
-    .style("opacity", 0);
+// //tooltip help from https://bl.ocks.org/tiffylou/88f58da4599c9b95232f5c89a6321992
+// var tooltip = d3.select("body").append("div")
+//     .attr("class", "tooltip")
+//     .style("opacity", 0);
 //
 //
 var data1, data2;
@@ -71,13 +50,6 @@ queue()
         // console.log(data1);
         // console.log(usamap);
 
-        var projection = d3.geoIdentity();
-        // .translate([width_map / 2, height_map / 2]);
-        // .fitExtent([[50,50],[600-50,300-50]], featureCollection);
-        // .fitSize([width_map,height_map],usamap);
-
-        var path = d3.geoPath()
-            .projection(projection);
 
         for (var i = 0; i < data2.length; i++) {
             //Grab state name
@@ -149,24 +121,6 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
     ]);
     console.log(usamap[3].properties[selectedMap]);
 
-    for (var i =0; i < usamap.length; i++) {
-        var africaCode = usamap[i].Code;
-
-        var africaPop = usamap[i][selectedMap];
-
-        for (var j=0; j < usamap.length; j++) {
-            var mapCode = usamap[j].properties.adm0_a3_is;
-
-            if (africaCode == mapCode) {
-                usamap[j].properties[selectedMap] = africaPop;
-
-                break;
-            }
-        }
-    }
-
-
-
 
 
     choropleth.selectAll("path")
@@ -176,7 +130,7 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
         .data(usamap)
         .enter()
         .append("path")
-        .attr("class", "maps")
+        // .attr("class", "maps")
         .attr("d", path)
         .style("fill", function (d) {
             var value = d.properties[selectedMap];
