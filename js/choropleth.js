@@ -20,8 +20,13 @@ var projection = d3.geoAlbersUsa().scale(1300).translate([487.5, 305]);
     // .scale([500]);
 
 //Define default path generator
+//map initializing
+var projection = d3.geoAlbersUsa()
+    .translate([width / 2, height / 2])
+    .scale([20])
+    .center([0, 0]);
+
 var path = d3.geoPath();
-    // .projection(projection);
 
 // // color scale for map
 // var color2 = d3.scaleQuantize()

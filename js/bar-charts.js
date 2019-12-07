@@ -9,7 +9,7 @@ var width = 385 - margin.left - margin.right,
 //https://bl.ocks.org/d3noob/5987480
 // help getting two graphs in one svg
 
-var svg = d3.select("#chart-area").append("svg")
+var svg = d3.select("#barchart-area").append("svg")
      .attr("width", (2*width) + (4*margin.left) + margin.right)
      .attr("height", height + margin.top + margin.bottom)
 //     .append("g")
@@ -96,7 +96,8 @@ d3.csv("data/data2.csv", function(error, csv) {
 
     chart1.selectAll(".bar")
         .data(data)
-        .enter().append("rect")
+        .enter().append("svg:image")
+        .attr("xlink:href", "img/pencil-clipart-vertical-2.png")
         .attr("class", "bar")
         .attr("x", function (d) {
             return x(d.Race)+ 15;
@@ -109,7 +110,8 @@ d3.csv("data/data2.csv", function(error, csv) {
         .on('mouseout', tip.hide)
         .attr("height", function (d) {
             return height - y(d.y2017);
-        });
+        })
+        .attr("preserveAspectRatio", "none");
     // .attr("transform", "translate(" + (30) + "," + (-30) + ")");
 
     chart1.append("g")
@@ -167,6 +169,7 @@ function updateVis(myKey){
             return y(d[myKey]);
         })
         .attr("height", function (d) {
+            console.log("doing this?")
             return height - y(d[myKey]);
         });
 
@@ -193,7 +196,8 @@ function updateVis(myKey){
 
     chart2.selectAll(".bar")
         .data(data)
-        .enter().append("rect")
+        .enter().append("svg:image")
+        .attr("xlink:href", "img/pencil-clipart-vertical-2.png")
         .attr("class", "bar")
         .attr("x", function (d) {
             return x2(d.Race)+ 15;
@@ -206,7 +210,8 @@ function updateVis(myKey){
         .on('mouseout', tip.hide)
         .attr("height", function (d) {
             return height - y2(d.y2017);
-        });
+        })
+        .attr("preserveAspectRatio", "none");
     // .attr("transform", "translate(" + (30) + "," + (-30) + ")");
 
     chart2.append("g")
