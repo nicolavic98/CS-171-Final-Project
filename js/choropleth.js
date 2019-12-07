@@ -153,6 +153,26 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
     ]);
     console.log(usamap[3].properties[selectedMap]);
 
+    for (var i =0; i < africa.length; i++) {
+        var africaCode = africa[i].Code;
+
+        var africaPop = africa[i][rankingType];
+
+        for (var j=0; j < AfricaMap.length; j++) {
+            var mapCode = AfricaMap[j].properties.adm0_a3_is;
+
+            if (africaCode == mapCode) {
+                AfricaMap[j].properties[rankingType] = africaPop;
+
+                break;
+            }
+        }
+    }
+    
+
+
+
+
     choropleth.selectAll("path")
         .remove();
 
@@ -161,7 +181,8 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
         .enter()
         .append("path")
         .attr("class", "maps")
-        .attr("d", path).style("fill", function (d) {
+        .attr("d", path)
+        .style("fill", function (d) {
             var value = d.properties[selectedMap];
             console.log(d.properties);
             console.log(selectedMap);
@@ -173,9 +194,9 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
     });
         // .style("fill", "none")
         // .style("stroke", "black");
-        .attr("d", path)
-        .style("fill", "none")
-        .style("stroke", "black")
+        // .attr("d", path)
+        // .style("fill", "none")
+        // .style("stroke", "black")
         // .on("mouseover", function(d) {
         //     tooltip.transition()
         //         .duration(200)
