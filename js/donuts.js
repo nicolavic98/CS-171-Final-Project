@@ -108,7 +108,7 @@ function pieChart(d3) {
 
         var arc = d3.svg.arc();
 
-        var svg = d3.select("volunteers_area").append("svg")
+        var svg = d3.select("#volunteers_area").append("svg")
             .attr("width", width_fin)
             .attr("height", height_fin)
             .append("g")
