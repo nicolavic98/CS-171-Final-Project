@@ -108,27 +108,32 @@ d3.csv("data/data2.csv", function(error, csv) {
         .style("font-size", "14px")
         .text("# of Enrolled Students");
 
-    chart1.selectAll("text.height")
-        .data(data)
-        .enter()
-        .append("text")
-        .text(function(d) {
-            return Math.floor(d.y2017);
-        })
-        .attr("x", function(d,i) {
-            return i*60 + 10;
-        })
-        .attr("y", function(d, i) {
-            return y(d.y2017) - 10;
-        })
-        .attr("class", "height");
 
+
+var selectionbar;
 
     d3.select('#select-key-bar').on('change', function(a) {
         var newkey = d3.select(this).property('value');
-        // console.log(newkey);
+        selectionbar = newkey;
+        console.log(newkey);
+        console.log(selectionbar);
         updateVis(newkey);
     });
+    // chart1.selectAll("text.height")
+    //     .data(data)
+    //     .enter()
+    //     .append("text")
+    //     .text(function(d) {
+    //         return Math.floor(d.y2017);
+    //     })
+    //     .attr("x", function(d,i) {
+    //         return i*60 + 10;
+    //     })
+    //     .attr("y", function(d, i) {
+    //         return y(d[selectionbar]) - 10;
+    //     })
+    //     .attr("class", "height");
+
 
 
 function updateVis(myKey){
