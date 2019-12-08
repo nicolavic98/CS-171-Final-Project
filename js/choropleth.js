@@ -18,6 +18,7 @@ var path = d3.geoPath()
 var tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
+    // .style("fill", "rgb(255,102,102)");
 
 
 var data1, data2;
@@ -133,12 +134,20 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
                 return "#ccc";
             }
     })
-    .on("mouseover", function(d) {
-        tooltip.transition()
-            .duration(200)
-            .style("opacity", .9);
-        tooltip.html("Hi")
-    });
+        .on("mouseover", function(d) {
+            tooltip.transition()
+                .duration(200)
+                .style("opacity", .9);
+                // .style("fill", "#fd4567");
+            tooltip.html(d.properties.name + "<br>" + "Students: " + d.properties[selectedMap])
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY) + "px");
+        })
+        .on("mouseout", function(d) {
+            tooltip.transition()
+                .duration(500)
+                .style("opacity", 0);
+        });
 
 
     choropleth.append("g")
