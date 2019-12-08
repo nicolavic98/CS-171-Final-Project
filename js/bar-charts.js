@@ -61,16 +61,6 @@ d3.csv("data/data2.csv", function(error, csv) {
     }));
     y.domain([0, 13000]);
 
-    var tip = d3.tip()
-        .attr('class', 'd3-tip')
-        .style("font-size","20px")
-        .offset([-30, 0])
-        .html(function(d) {
-            console.log(d3.select('#select-key-bar'));
-            return Math.floor(d.y2017);
-        });
-
-
     chart1.selectAll(".bar")
         .data(data)
         .enter().append("svg:image")
@@ -83,8 +73,6 @@ d3.csv("data/data2.csv", function(error, csv) {
         .attr("y", function (d) {
             return y(d.y2017);
         })
-        .on('mouseover', tip.show)
-        .on('mouseout', tip.hide)
         .attr("height", function (d) {
             return height - y(d.y2017);
         })
@@ -120,6 +108,22 @@ d3.csv("data/data2.csv", function(error, csv) {
         .style("font-size", "14px")
         .text("# of Enrolled Students");
 
+    chart1.selectAll("text.height")
+        .data(data)
+        .enter()
+        .append("text")
+        .text(function(d) {
+            return Math.floor(d.y2017);
+        })
+        .attr("x", function(d,i) {
+            return i*60 + 10;
+        })
+        .attr("y", function(d, i) {
+            return y(d.y2017) - 10;
+        })
+        .attr("class", "height");
+
+
     d3.select('#select-key-bar').on('change', function(a) {
         var newkey = d3.select(this).property('value');
         // console.log(newkey);
@@ -140,9 +144,9 @@ function updateVis(myKey){
             return y(d[myKey]);
         })
         .attr("height", function (d) {
-            // console.log("doing this?");
             return height - y(d[myKey]);
         });
+
 
     chart1.selectAll(".y-axis")
         .transition()
@@ -177,8 +181,6 @@ function updateVis(myKey){
         .attr("y", function (d) {
             return y2(d.y2017);
         })
-        .on('mouseover', tip.show)
-        .on('mouseout', tip.hide)
         .attr("height", function (d) {
             return height - y2(d.y2017);
         })
@@ -222,5 +224,20 @@ function updateVis(myKey){
         .attr("text-anchor", "middle")
         .style("font-size", "14px")
         .text("# of Enrolled Students");
+
+    chart2.selectAll("text.height")
+        .data(data)
+        .enter()
+        .append("text")
+        .text(function(d) {
+            return Math.floor(d.y2017);
+        })
+        .attr("x", function(d,i) {
+            return i*60 + 10;
+        })
+        .attr("y", function(d, i) {
+            return y(d.y2017) - 10;
+        })
+        .attr("class", "height");
 
 });
