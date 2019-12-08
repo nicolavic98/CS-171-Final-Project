@@ -217,6 +217,7 @@ function updateVis(myKey){
         .attr("y", 460)
         .attr("text-anchor", "middle")
         .style("font-size", "14px")
+        .style("font", "Helvetica")
         .text("Ethnicity");
     chart2.append("text")
         .attr("x", -200)
@@ -224,6 +225,7 @@ function updateVis(myKey){
         .attr("transform", "rotate(-90)")
         .attr("text-anchor", "middle")
         .style("font-size", "14px")
+        .style("font", "Helvetica")
         .text("# of Enrolled Students");
 
     chart2.selectAll("text.height")

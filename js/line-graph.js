@@ -156,22 +156,26 @@ function dataHandler(error, data2, degreeData) {
     .attr("y", height_line + 60)
     .attr("dy", ".1em")
     .style("text-anchor", "end")
+      .style("font", "Helvetica")
     .text("School Year");
   myVis.append("text")
     .attr("class", "axislabel")
-    .attr("x", -150)
-    .attr("y", -65)
+    .attr("x", -200)
+    .attr("y", -67)
     .attr("dy", ".1em")
     .attr("transform", "rotate(-90)")
     .style("text-anchor", "end")
+      .style("font", "Helvetica")
     .text("Number of Students");
 
     myVis.append("text")
         .attr("class", "title_line")
-        .attr("x", 430)
-        .attr("y", 10)
+        .attr("x", 675)
+        .attr("y", 1)
         .attr("dy", ".1em")
         .style("text-anchor", "end")
+        .style("font", "Helvetica")
+        .style("text-decoration", "underline")
         .text("What Students Have Studied Over Time");
 
 }
