@@ -111,3 +111,17 @@
 .mdb-select:hover {
     background-color: #ffe6e6;
 }
+
+.tooltip {
+    position: absolute;
+    text-align: center;
+    width: 130px;
+    height: 60px;
+    padding: 2px;
+    font-size: 20px;
+    font-family: Gabriola;
+    background: #fff;
+    border: 0px;
+    pointer-events: none;
+    color: #4d0000;
+}
