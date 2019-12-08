@@ -130,13 +130,13 @@ d3.csv("data/data2.csv", function(error, csv) {
 
     ///axis labels
     chart1.append("text")
-        .attr("x", (160))
+        .attr("x", (190))
         .attr("y", 460)
         .attr("text-anchor", "middle")
         .style("font-size", "14px")
         .text("Ethnicity");
     chart1.append("text")
-        .attr("x", -150)
+        .attr("x", -200)
         .attr("y", -45)
         .attr("transform", "rotate(-90)")
         .attr("text-anchor", "middle")
@@ -229,23 +229,24 @@ function updateVis(myKey){
         .call(d3.axisLeft(y2));
 
     chart2.append("text")
-        .attr("x", (150))
-        .attr("y", 0-(28))
+        .attr("x", (190))
+        .attr("y", 0-(7))
         .attr("text-anchor", "middle")
         .style("font-size", "16px")
+        .style("font", "Helvetica")
         .style("text-decoration", "underline")
         .text("Present Day");
 
 
     //axis labels
     chart2.append("text")
-        .attr("x", (160))
+        .attr("x", (190))
         .attr("y", 460)
         .attr("text-anchor", "middle")
         .style("font-size", "14px")
         .text("Ethnicity");
     chart2.append("text")
-        .attr("x", -150)
+        .attr("x", -200)
         .attr("y", -45)
         .attr("transform", "rotate(-90)")
         .attr("text-anchor", "middle")
