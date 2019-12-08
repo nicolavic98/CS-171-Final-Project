@@ -121,7 +121,7 @@ function dataHandler(error, data2, degreeData) {
       return colorscale(d.key)
     })
     .style("opacity", .5)
-    .style('stroke-width', .75)
+    .style('stroke-width', 2)
     // hover effects
       // http://jsfiddle.net/pnavarrc/4fgv4/2
       // sample code for changes in line thickness on hover
@@ -136,7 +136,7 @@ function dataHandler(error, data2, degreeData) {
               .transition()
               .duration(0)
               .style("opacity",1)
-              .style('stroke-width', 4);
+              .style('stroke-width', 7);
       })
       .on('mouseout', function(d){
           drawnLine.selectAll(".mousetext").remove();
