@@ -1,6 +1,6 @@
 // --> CREATE SVG DRAWING AREA
 
-var margin_map = {top: 40, right: 10, bottom: 90, left: 100};
+var margin_map = {top: 40, right: 100, bottom: 90, left: 100};
 
 var width_map = 1000 + margin_map.right + margin_map.left,
     height_map = 700 + margin_map.top + margin_map.bottom;
@@ -146,8 +146,9 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
         .attr("transform", "translate(1000,200)");
 
     var legend = d3.legendColor()
-        .labelFormat(d3.format(".2f"))
-        .scale(color);
+        .labelFormat(d3.format(",.0f"))
+        .scale(color)
+        .title("Number of Students");
 
     choropleth.select(".legendQuant")
         .call(legend);
