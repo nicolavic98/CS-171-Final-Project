@@ -7,4 +7,4 @@ This project serves to analyze the current situation of the US Postsecondary Edu
 
 To view our project website, please visit: https://nicolavic98.github.io/CS-171-Final-Project/
 
-To view our screencast, please visit: 
+To view our screencast, please visit: https://drive.google.com/file/d/1RSSouGAswm_pyM_-A75WYN2pxwwxvJbx/view?usp=sharing
