@@ -83,7 +83,7 @@ queue()
                 }
             }
         }
-        console.log(usamap);
+        // console.log(usamap);
 
         // Event Listener (select-box)
         var selectMapType = d3.select("#selected-map").on("change", updateChoropleth);
@@ -96,7 +96,7 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
 //
 
     var selectedMap = selectMapType.property("value");
-    console.log(selectedMap);
+    // console.log(selectedMap);
 
     var color = d3.scaleQuantize()
         .range(["rgb(255,247,236)", "rgb(254,232,200)",
@@ -109,7 +109,7 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
             return d.properties[selectedMap];
         })
     ]);
-    console.log(usamap[3].properties[selectedMap]);
+    // console.log(usamap[3].properties[selectedMap]);
 
 
 
@@ -126,8 +126,8 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
         .attr("stroke-width", .25)
         .style("fill", function (d) {
             var value = d.properties[selectedMap];
-            console.log(d.properties);
-            console.log(selectedMap);
+            // console.log(d.properties);
+            // console.log(selectedMap);
             if(value) {
                 return color(value);
             } else {
@@ -161,8 +161,5 @@ function updateChoropleth() { //this serves as the "enter" part; update to follo
 
     choropleth.select(".legendQuant")
         .call(legend);
-
-
-}
-
-    });
+    }
+});
