@@ -12,10 +12,7 @@ var width = 485 - margin.left - margin.right,
 var svg = d3.select("#barchart-area").append("svg")
      .attr("width", (2*width) + (4*margin.left) + margin.right)
      .attr("height", height + margin.top + margin.bottom)
-//     .append("g")
-//     .attr("transform", "translate(" + (margin.left) + "," + margin.top + ")");
 
-// svg.on("mouseover",)
 
 var chart1 = svg.append("g")
     .attr("transform", "translate(" + (margin.left) + "," + margin.top + ")");
@@ -42,14 +39,8 @@ d3.csv("data/data2.csv", function(error, csv) {
         d.y1976 = +d.y1976;
 
     });
-    // Store csv data in global variable
     data = csv;
 
-    //console.log(data);
-
-    // updateVisualization gets automatically called within the data = csv call;
-    // basically(whenever the data is set to a value using = operator);
-    // see the definition above: Object.defineProperty(window, 'data', { ...
 
 // Render visualization
 
@@ -58,9 +49,6 @@ d3.csv("data/data2.csv", function(error, csv) {
         return d.y2017;
     });
 
-    // console.log(maxCol);
-
-// console.log(maxCol);
 
     var x = d3.scaleBand()
         .range([0, width])
@@ -73,26 +61,15 @@ d3.csv("data/data2.csv", function(error, csv) {
     }));
     y.domain([0, 13000]);
 
-
-    // var newdata = data[data.length-1];
-    // newdata.forEach(function(d){
-    //     console.log(d);
-    // });
-
-// console.log(csv[2].Malaria_cases);
-
-    // var myData = data[data.length-1];
-    //console.log(data);
     var tip = d3.tip()
         .attr('class', 'd3-tip')
-        .style("font-size","10px")
-        .offset([-10, 0])
+        .style("font-size","20px")
+        .offset([-30, 0])
         .html(function(d) {
-            // console.log(d3.select('#select-key'));
+            console.log(d3.select('#select-key-bar'));
             return Math.floor(d.y2017);
         });
 
-    svg.call(tip);
 
     chart1.selectAll(".bar")
         .data(data)
@@ -143,20 +120,14 @@ d3.csv("data/data2.csv", function(error, csv) {
         .style("font-size", "14px")
         .text("# of Enrolled Students");
 
-    d3.select('#select-key').on('change', function(a) {
+    d3.select('#select-key-bar').on('change', function(a) {
         var newkey = d3.select(this).property('value');
-        console.log(newkey);
+        // console.log(newkey);
         updateVis(newkey);
     });
 
 
 function updateVis(myKey){
-    // console.log("changling");
-    // svg.selectAll(".bar").remove();
-   // y.domain([0, d3.max(data, function (d) {
-      //  console.log(d[myKey]);
-       // return d[myKey];
-   // })]);
     console.log(d3.max(data, function (d) {
         return d[myKey];
     }));
@@ -169,7 +140,7 @@ function updateVis(myKey){
             return y(d[myKey]);
         })
         .attr("height", function (d) {
-            console.log("doing this?")
+            // console.log("doing this?");
             return height - y(d[myKey]);
         });
 
